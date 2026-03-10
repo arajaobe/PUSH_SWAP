@@ -32,5 +32,7 @@ int		rrr(t_stack **a, t_stack **b);
 int		count_nodes(t_stack *head);
 int		find_content(t_stack *head, int pos);
 float	disorder_metrics(t_stack *head);
+int	is_decreasing(t_stack **tab);
+int	ft_insertion(t_stack **a, t_stack **b);
 
 #endif
