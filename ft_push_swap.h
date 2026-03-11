@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_push_swap.h                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: arajaobe <arajaobe@student.42antananari    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/03/09 12:58:04 by arajaobe          #+#    #+#             */
+/*   Updated: 2026/03/11 17:22:30 by arajaobe         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 
 #ifndef FT_PUSH_SWAP_H
 # define FT_PUSH_SWAP_H
@@ -9,6 +21,7 @@
 typedef struct s_stack
 {
 	int	content;
+	int	index;
 	struct s_stack	*next;
 }	t_stack;
 
@@ -32,7 +45,10 @@ int		rrr(t_stack **a, t_stack **b);
 int		count_nodes(t_stack *head);
 int		find_content(t_stack *head, int pos);
 float	disorder_metrics(t_stack *head);
-int	is_decreasing(t_stack **tab);
-int	ft_insertion(t_stack **a, t_stack **b);
+void	insertsort(int	*tab, int size);
+int search_content(t_stack **head, int find);
+t_stack	*find_link(t_stack *head, int pos);
+void	fill_index(t_stack **head, int	*array);
+void print_index(t_stack *head);
 
 #endif
