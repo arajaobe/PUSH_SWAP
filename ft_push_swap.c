@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_push_swap.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: samrazaf <samrazaf@student.42antananari    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/03/12 12:09:31 by samrazaf          #+#    #+#             */
+/*   Updated: 2026/03/12 12:09:36 by samrazaf         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "ft_push_swap.h"
 
@@ -211,21 +222,22 @@ int main()
 );*/
 
 
-	//a = list_fillers(5, 5, 4, 3, 2, 1);
-	a = list_fillers(9, 9, 4, 6, 8, 7, 5, 2, 3, 1);
+	a = list_fillers(5, 5, 4, 3, 2, 1);
+	//a = list_fillers(9, 9, 4, 6, 8, 7, 5, 2, 3, 1);
 	disorder = disorder_metrics(a);
 
 	print_stacks(a,b);
-	chunk_sort(&a, &b);
-	printf("\n");
-	print_index(a);
+	x = reverse_all(&a, &b);
+	//chunk_sort(&a, &b);
+	//printf("\n");
+	//print_index(a);
 
-	//print_stacks(a,b);
+	print_stacks(a,b);
 	//sa(&a);
 	//solve_three(&a);
 	//x = simple_sort(&a,&b);
 	//print_stacks(a,b);
-	//printf("number of operations: %d\n", x);
+	printf("number of operations: %d\n", x);
 	//printf("disorder: %f", disorder);
 	//push('b');
 	//push('b');
