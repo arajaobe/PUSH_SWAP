@@ -1,27 +1,5 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_push_swap.c                                     :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: samrazaf <samrazaf@student.42antananari    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/12 12:09:31 by samrazaf          #+#    #+#             */
-/*   Updated: 2026/03/12 12:09:36 by samrazaf         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
 #include "ft_push_swap.h"
-
-
-static t_stack *a;
-static t_stack	*b;
-static	void push(char v)
-{
-	if (v == 'a' || v == 'A')
-		pa(&a, &b);
-	else if (v == 'b' || v == 'B')
-		pb(&a, &b);
-}
 
 int	solve_three(t_stack **a, t_stack **b)
 {
@@ -106,17 +84,18 @@ int	simple_sort(t_stack **a, t_stack **b)
 							count_rev--;
 						}
 
-						//print_stacks(*a,*b);
+						print_stacks(*a,*b);
 						count = index;
 						break ;
 					}
-					else
+					else if (index > (len / 2))
 					{
 						while ((len - count_rev + 1) != 0)
 						{
 							count_operations += rra(a);
 							count_rev++;
 						}
+						print_stacks(*a,*b);
 						count = index;
 						break ;
 					}
@@ -169,28 +148,101 @@ int	chunk_sort(t_stack **a, t_stack **b)
 	temp = malloc(sizeof(int) * len);
 	array_sort(a, temp);
 	fill_index(a, temp);
-
-
-
 	i = 0;
+
+
+	/*i = 0;
 	while (i < len)
 	{
 		printf("%d", temp[i]);
 		i++;
 
-	}
+	}*/
 	return 0;
 
 }
 
-
-int main()
+int	ft_atoi(const char *nptr)
 {
-	//t_stack *a;
-	//t_stack	*b;
+	int	i;
+	int	sign;
+	int	res;
+
+	i = 0;
+	sign = 1;
+	res = 0;
+	while (nptr[i] == 32 || (nptr[i] >= 9 && nptr[i] <= 13))
+		i++;
+	if (nptr[i] == '-' || nptr[i] == '+')
+	{
+		if (nptr[i] == '-')
+			sign = -1;
+		i++;
+	}
+	while (nptr[i] >= '0' && nptr[i] <= '9')
+	{
+		res = res * 10;
+		res = res + (nptr[i] - '0');
+		i++;
+	}
+	return (sign * res);
+}
+
+
+t_stack	*list_arg_fillers(int argc, char **argv)
+{
+
+	t_stack *one;
+	t_stack *two;
+	t_stack *three;
+	int i;
+	int j;
+
+	int *tab;
+	tab = malloc (sizeof(int) * (argc - 1));
+
+	for(j = 0; j < argc - 1; j++)
+		tab[j] = ft_atoi(argv[j + 1]);
+
+	one = ft_lstnew(tab[0]);
+	if (argc == 1)
+		return one;
+	two = ft_lstnew(tab[1]);
+	one->next = two;
+	if (argc == 2)
+		return one;
+	i = 2;
+	three = one->next;
+	while (i < j)
+	{
+		two = ft_lstnew(tab[i]);
+		three->next = two;
+		three = three->next;
+		i++;
+	}
+	return one;
+
+}
+
+int main(int argc, char **argv)
+{
+	t_stack *a;
+	t_stack	*b;
 	int x;
 	float disorder;
 	b = NULL;
+
+
+	/*int *tab;
+	tab = malloc (sizeof(int) * (argc - 1));
+
+	for(int j = 0; j < argc - 1; j++)
+		tab[j] = ft_atoi(argv[j + 1]);
+
+	for(int k = 0; k < argc - 1; k++)
+		printf("%d ", tab[k]);*/
+
+
 	/*a = list_fillers(100, 37, 82, 14, 95, 63, 21, 48, 7, 56, 99,
 					12, 68, 33, 4, 77, 25, 89, 42, 10, 54,
 					19, 73, 31, 85, 2, 61, 46, 28, 70, 16,
@@ -222,12 +274,12 @@ int main()
 );*/
 
 
-	a = list_fillers(5, 5, 4, 3, 2, 1);
+	a = list_arg_fillers(argc, argv);
 	//a = list_fillers(9, 9, 4, 6, 8, 7, 5, 2, 3, 1);
-	disorder = disorder_metrics(a);
+	//disorder = disorder_metrics(a);
 
-	print_stacks(a,b);
-	x = reverse_all(&a, &b);
+
+	//print_stacks(a,b);
 	//chunk_sort(&a, &b);
 	//printf("\n");
 	//print_index(a);
@@ -235,8 +287,8 @@ int main()
 	print_stacks(a,b);
 	//sa(&a);
 	//solve_three(&a);
-	//x = simple_sort(&a,&b);
-	//print_stacks(a,b);
+	x = simple_sort(&a,&b);
+	print_stacks(a,b);
 	printf("number of operations: %d\n", x);
 	//printf("disorder: %f", disorder);
 	//push('b');
@@ -246,6 +298,6 @@ int main()
 	//push('a');
 	//push('a');
 	//print_stacks(a,b);
-
+	return 0;
 
 }
