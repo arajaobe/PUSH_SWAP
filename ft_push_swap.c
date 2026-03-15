@@ -45,184 +45,6 @@ int	solve_three(t_stack **a, t_stack **b)
 	return (count);
 }
 
-int	simple_sort(t_stack **a, t_stack **b)
-{
-	int	len;
-	int len_fix;
-	int	i;
-	int j;
-	int k;
-	int index;
-	int	count_rev;
-	int count;
-	int count_operations;
-
-
-	count_operations = 0;
-	i = 0;
-	len_fix = count_nodes(*a);
-	while (i < len_fix - 3)
-	{
-		len = count_nodes(*a);
-		count = 0;
-		while(count != len)
-		{
-			j = find_content(*a, 1);
-			index = 2;
-			while(index <= len)
-			{
-				k = find_content(*a, index);
-				if (j > k)
-				{
-					count_rev = index;
-
-					if (index <= (len / 2))
-					{
-						while (count_rev != 1)
-						{
-							count_operations += ra(a);
-							count_rev--;
-						}
-
-						print_stacks(*a,*b);
-						count = index;
-						break ;
-					}
-					else if (index > (len / 2))
-					{
-						while ((len - count_rev + 1) != 0)
-						{
-							count_operations += rra(a);
-							count_rev++;
-						}
-						print_stacks(*a,*b);
-						count = index;
-						break ;
-					}
-
-				}
-				count = index;
-				index++;
-			}
-		}
-		i++;
-		count_operations += pb(a,b);
-		//print_stacks(*a,*b);
-	}
-	count_operations += solve_three(a,b);
-	len = count_nodes(*b);
-	if (*b)
-	{
-		while (len != 0)
-		{
-			count_operations += pa(a,b);
-			len--;
-		}
-	}
-	return (count_operations);
-}
-
-void array_sort(t_stack **a, int *array)
-{
-	int	len;
-	int i;
-
-	len = count_nodes(*a);
-	i = 0;
-	while (i < len)
-	{
-		array[i] = find_content(*a,i+1);
-		i++;
-	}
-	insertsort(array, len);
-}
-
-int	chunk_sort(t_stack **a, t_stack **b)
-{
-	int	len;
-	int i;
-	int	*temp;
-	//t_stack	test;
-
-	len = count_nodes(*a);
-	temp = malloc(sizeof(int) * len);
-	array_sort(a, temp);
-	fill_index(a, temp);
-	i = 0;
-
-
-	/*i = 0;
-	while (i < len)
-	{
-		printf("%d", temp[i]);
-		i++;
-
-	}*/
-	return 0;
-
-}
-
-int	ft_atoi(const char *nptr)
-{
-	int	i;
-	int	sign;
-	int	res;
-
-	i = 0;
-	sign = 1;
-	res = 0;
-	while (nptr[i] == 32 || (nptr[i] >= 9 && nptr[i] <= 13))
-		i++;
-	if (nptr[i] == '-' || nptr[i] == '+')
-	{
-		if (nptr[i] == '-')
-			sign = -1;
-		i++;
-	}
-	while (nptr[i] >= '0' && nptr[i] <= '9')
-	{
-		res = res * 10;
-		res = res + (nptr[i] - '0');
-		i++;
-	}
-	return (sign * res);
-}
-
-
-t_stack	*list_arg_fillers(int argc, char **argv)
-{
-
-	t_stack *one;
-	t_stack *two;
-	t_stack *three;
-	int i;
-	int j;
-
-	int *tab;
-	tab = malloc (sizeof(int) * (argc - 1));
-
-	for(j = 0; j < argc - 1; j++)
-		tab[j] = ft_atoi(argv[j + 1]);
-
-	one = ft_lstnew(tab[0]);
-	if (argc == 1)
-		return one;
-	two = ft_lstnew(tab[1]);
-	one->next = two;
-	if (argc == 2)
-		return one;
-	i = 2;
-	three = one->next;
-	while (i < j)
-	{
-		two = ft_lstnew(tab[i]);
-		three->next = two;
-		three = three->next;
-		i++;
-	}
-	return one;
-
-}
 
 int main(int argc, char **argv)
 {
@@ -275,22 +97,23 @@ int main(int argc, char **argv)
 
 
 	a = list_arg_fillers(argc, argv);
-	//a = list_fillers(9, 9, 4, 6, 8, 7, 5, 2, 3, 1);
-	//disorder = disorder_metrics(a);
+	//a = list_fillers(11, 4, 2, 1, 5, 3, 26, 9, 7, 8, 10, 11);
+	disorder = disorder_metrics(a);
 
-
+	//a = list_fillers(5, 5, 2, 4, 1, 3);
 	//print_stacks(a,b);
 	//chunk_sort(&a, &b);
 	//printf("\n");
 	//print_index(a);
 
 	print_stacks(a,b);
+
 	//sa(&a);
 	//solve_three(&a);
-	x = simple_sort(&a,&b);
+	x = improved_simple_sort(&a,&b);
 	print_stacks(a,b);
 	printf("number of operations: %d\n", x);
-	//printf("disorder: %f", disorder);
+	printf("disorder: %f", disorder);
 	//push('b');
 	//push('b');
 	//print_stacks(a,b);

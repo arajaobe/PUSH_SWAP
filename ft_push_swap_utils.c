@@ -13,8 +13,6 @@
 
 #include "ft_push_swap.h"
 
-
-
 void print_index(t_stack *head)
 {
 	t_stack *p;
@@ -102,6 +100,41 @@ t_stack	*list_fillers(int stop, ...)
 	}
 	va_end(args);
 	return one;
+}
+
+t_stack	*list_arg_fillers(int argc, char **argv)
+{
+
+	t_stack *one;
+	t_stack *two;
+	t_stack *three;
+	int i;
+	int j;
+
+	int *tab;
+	tab = malloc (sizeof(int) * (argc - 1));
+
+	for(j = 0; j < argc - 1; j++)
+		tab[j] = ft_atoi(argv[j + 1]);
+
+	one = ft_lstnew(tab[0]);
+	if (argc == 1)
+		return one;
+	two = ft_lstnew(tab[1]);
+	one->next = two;
+	if (argc == 2)
+		return one;
+	i = 2;
+	three = one->next;
+	while (i < j)
+	{
+		two = ft_lstnew(tab[i]);
+		three->next = two;
+		three = three->next;
+		i++;
+	}
+	return one;
+
 }
 int	count_nodes(t_stack *head)
 {
@@ -207,6 +240,32 @@ void	fill_index(t_stack **head, int	*array)
 
 }
 
+int	ft_atoi(const char *nptr)
+{
+	int	i;
+	int	sign;
+	int	res;
+
+	i = 0;
+	sign = 1;
+	res = 0;
+	while (nptr[i] == 32 || (nptr[i] >= 9 && nptr[i] <= 13))
+		i++;
+	if (nptr[i] == '-' || nptr[i] == '+')
+	{
+		if (nptr[i] == '-')
+			sign = -1;
+		i++;
+	}
+	while (nptr[i] >= '0' && nptr[i] <= '9')
+	{
+		res = res * 10;
+		res = res + (nptr[i] - '0');
+		i++;
+	}
+	return (sign * res);
+}
+
 float	disorder_metrics(t_stack *head)
 {
 	float	result;
@@ -258,6 +317,96 @@ void	insertsort(int	*tab, int size)
 		i++;
 	}
 }
+
+int int_sqrt(int n)
+{
+	if (n == 0 || n == 1) return n;
+	int x = n / 2;
+	while (x > n / x) {
+		x = (x + n / x) / 2;
+	}
+	return x;
+}
+
+int find_max(t_stack **head, int len)
+{
+	int	max;
+	int i;
+
+	max = find_content(*head, 1);
+	i = 2;
+	while (i <= len)
+	{
+		if (find_content(*head, i) > max)
+			max = find_content(*head,i);
+		i++;
+	}
+	return (max);
+}
+
+int find_min (t_stack **head, int len)
+{
+	int min;
+	int i;
+
+	min = find_content(*head, 1);
+	i = 2;
+	while (i <= len)
+	{
+		if (find_content(*head, i) < min)
+			min = find_content(*head, i);
+		i++;
+	}
+	return (min);
+}
+
+int	intchr(int to_find, int *range, int size)
+{
+	int res;
+	int i;
+
+	res = 0;
+	i = 0;
+	while (i < size)
+	{
+		if (to_find == range[i])
+			res = 1;
+		i++;
+	}
+	return (res);
+}
+
+void array_sort(t_stack **a, int *array)
+{
+	int	len;
+	int i;
+
+	len = count_nodes(*a);
+	i = 0;
+	while (i < len)
+	{
+		array[i] = find_content(*a,i+1);
+		i++;
+	}
+	insertsort(array, len);
+}
+
+int	check_pos_from_edge(t_stack **head, int check)
+{
+	int	pos;
+	int	len;
+	int	diff;
+
+	diff = 0;
+	len = count_nodes(*head);
+	pos = search_content(head, check);
+	if (pos <= (len / 2) + 1 ) // first half
+		diff = pos - 1;
+	else
+		diff =  (len + 1) - pos;
+	return (diff);
+}
+
 //chunks 3
 //chunks 3 -1 = 2
 // start :3   | end : 5
