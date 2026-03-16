@@ -35,8 +35,8 @@ void block_shuffle(int *arr, int n, int block_size) {
     return 0;
 }*/
 
-/*
-int main() {
+
+/*int main() {
     int n = 500;
     for (int i = n; i >= 1; i--) {
         printf("%d ", i);

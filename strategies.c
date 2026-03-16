@@ -6,7 +6,7 @@
 /*   By: arajaobe <arajaobe@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/16 13:38:01 by arajaobe          #+#    #+#             */
-/*   Updated: 2026/03/16 13:38:03 by arajaobe         ###   ########.fr       */
+/*   Updated: 2026/03/16 17:43:11 by arajaobe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,14 @@
 int	medium_core(t_stack **a, t_stack **b, int *array)
 {
 	static int	i;
-	int j;
-	int count;
-	int len;
-	int	*temp;
-	int chunk;
+	int 		count;
+	int 		len;
+	int			*temp;
+	int			chunk;
 
 	len = count_nodes(*a);
 	chunk = int_sqrt(len);
 	i = 0;
-	j = 0;
 	count = 0;
 	while (i < len)
 	{
@@ -46,6 +44,7 @@ int	medium_sort(t_stack **a, t_stack **b)
 	int	*array;
 	int count;
 
+	count = 0;
 	len = count_nodes(*a);
 	array = malloc(sizeof(int) * len);
 	array_sort(a, array);

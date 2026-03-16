@@ -6,7 +6,7 @@
 /*   By: arajaobe <arajaobe@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/09 12:58:31 by arajaobe          #+#    #+#             */
-/*   Updated: 2026/03/09 12:58:32 by arajaobe         ###   ########.fr       */
+/*   Updated: 2026/03/16 17:04:53 by arajaobe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,7 +164,7 @@ int	rrb(t_stack **b)
 {
 	int	x;
 	x = reverse_reverse(b);
-	printf("rra\n");
+	printf("rrb\n");
 	return (x);
 }
 
