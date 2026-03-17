@@ -6,7 +6,7 @@
 /*   By: arajaobe <arajaobe@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/09 12:58:04 by arajaobe          #+#    #+#             */
-/*   Updated: 2026/03/16 13:37:50 by arajaobe         ###   ########.fr       */
+/*   Updated: 2026/03/17 13:01:54 by arajaobe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ int		medium_core(t_stack **a, t_stack **b, int *array);
 int		medium_sort(t_stack **a, t_stack **b);
 int		simple_sort(t_stack **a, t_stack **b);
 int		improved_simple_sort(t_stack **a, t_stack **b);
+char	*ft_strnstr(const char *big, const char *little, size_t len);
 
 
 #endif

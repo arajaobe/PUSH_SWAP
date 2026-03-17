@@ -6,7 +6,7 @@
 /*   By: arajaobe <arajaobe@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/09 12:58:21 by arajaobe          #+#    #+#             */
-/*   Updated: 2026/03/11 17:44:20 by arajaobe         ###   ########.fr       */
+/*   Updated: 2026/03/17 17:04:18 by arajaobe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -268,7 +268,6 @@ int	ft_atoi(const char *nptr)
 
 float	disorder_metrics(t_stack *head)
 {
-	float	result;
 	int	mistakes;
 	int total_pair;
 	int	i;
@@ -278,7 +277,6 @@ float	disorder_metrics(t_stack *head)
 	mistakes = 0;
 	total_pair = 0;
 	len = count_nodes(head);
-
 	i = 0;
 	while (i < len)
 	{
@@ -294,8 +292,7 @@ float	disorder_metrics(t_stack *head)
 		}
 		i++;
 	}
-	result = (float)mistakes / total_pair;
-	return (result);
+	return ((float)mistakes / total_pair);
 }
 void	insertsort(int	*tab, int size)
 {
@@ -320,9 +317,11 @@ void	insertsort(int	*tab, int size)
 
 int int_sqrt(int n)
 {
-	if (n == 0 || n == 1) return n;
+	if (n == 0 || n == 1)
+		return n;
 	int x = n / 2;
-	while (x > n / x) {
+	while (x > n / x)
+	{
 		x = (x + n / x) / 2;
 	}
 	return x;
@@ -406,6 +405,7 @@ int	check_pos_from_edge(t_stack **head, int check)
 		diff =  (len + 1) - pos;
 	return (diff);
 }
+
 
 //chunks 3
 //chunks 3 -1 = 2
