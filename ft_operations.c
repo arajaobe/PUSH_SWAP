@@ -25,36 +25,39 @@ static int	swap(t_stack **head)
 	(*head)->next->content = temp;
 	return (1);
 }
-int	sa(t_stack **a)
+int	sa(t_stack **a,  int *op_counters)
 {
 	int x;
 
 	x = swap(a);
 	printf("sa\n");
+	op_counters[OP_SA]++;
 	return (x);
 }
 
-int	sb(t_stack **b)
+int	sb(t_stack **b, int *op_counters)
 {
 	int x;
 
 	x = swap(b);
 	printf("sb\n");
+	op_counters[OP_SB]++;
 	return (x);
 
 }
 
-int	ss(t_stack **a, t_stack **b)
+int	ss(t_stack **a, t_stack **b, int *op_counters)
 {
 	int x;
 	int y;
 	x = swap(a);
 	y = swap(b);
 	printf("ss\n");
+	op_counters[OP_SS]++;
 	return (x + y);
 }
 
-int	pb(t_stack **a, t_stack **b)
+int	pb(t_stack **a, t_stack **b, int *op_counters)
 {
 	t_stack	*temp;
 
@@ -65,10 +68,11 @@ int	pb(t_stack **a, t_stack **b)
 	temp->next = *b;
 	*b = temp;
 	printf("pb\n");
+	op_counters[OP_PB]++;
 	return (1);
 }
 
-int	pa(t_stack **a, t_stack **b)
+int	pa(t_stack **a, t_stack **b, int *op_counters)
 {
 	t_stack	*temp;
 
@@ -79,10 +83,11 @@ int	pa(t_stack **a, t_stack **b)
 	temp->next = *a;
 	*a = temp;
 	printf("pa\n");
+	op_counters[OP_PA]++;
 	return (1);
 }
 
-int	reverse_reverse(t_stack	**head)
+int	reverse_rotate(t_stack	**head)
 {
 	int	current;
 	int previous;
@@ -103,7 +108,7 @@ int	reverse_reverse(t_stack	**head)
 	return (1);
 }
 
-int	reverse(t_stack	**head)
+int	rotate(t_stack	**head)
 {
 	int	current;
 	int after;
@@ -122,59 +127,88 @@ int	reverse(t_stack	**head)
 	p->content = current;
 	return (1);
 }
-int	ra(t_stack **a)
+
+void	rotate_index(t_stack	**head)
+{
+	int	current;
+	int after;
+	t_stack	*p;
+
+	if (!*head)
+		return ;
+	p = *head;
+	current = p->index;
+	while (p->next)
+	{
+		after = p->next->index;
+		p->index = after;
+		p = p->next;
+	}
+	p->index = current;
+}
+
+
+int	ra(t_stack **a, int *op_counters)
 {
 	int	x;
 
-	x = reverse(a);
+	x = rotate(a);
+	rotate_index(a);
 	printf("ra\n");
+	op_counters[OP_RA]++;
 	return (x);
 }
 
-int	rb(t_stack **b)
+int	rb(t_stack **b, int *op_counters)
 {
 	int	x;
 
-	x = reverse(b);
+	x = rotate(b);
+	rotate_index(b);
 	printf("rb\n");
+	op_counters[OP_RB]++;
 	return (x);
 }
 
-int	rr(t_stack **a, t_stack **b)
+int	rr(t_stack **a, t_stack **b, int *op_counters)
 {
 	int	x;
 	int	y;
 
-	x = reverse(a);
-	y = reverse(b);
+	x = rotate(a);
+	y = rotate(b);
 	printf("rr\n");
+	op_counters[OP_RR]++;
 	return (x + y);
 }
 
-int	rra(t_stack **a)
+int	rra(t_stack **a, int *op_counters)
 {
 	int x;
 
-	x = reverse_reverse(a);
+	x = reverse_rotate(a);
 	printf("rra\n");
+	op_counters[OP_RRA]++;
 	return (x);
 }
 
-int	rrb(t_stack **b)
+int	rrb(t_stack **b, int *op_counters)
 {
 	int	x;
-	x = reverse_reverse(b);
+	x = reverse_rotate(b);
 	printf("rrb\n");
+	op_counters[OP_RRB]++;
 	return (x);
 }
 
-int	rrr(t_stack **a, t_stack **b)
+int	rrr(t_stack **a, t_stack **b, int *op_counters)
 {
 	int	x;
 	int	y;
 
-	x = reverse_reverse(a);
-	y = reverse_reverse(b);
+	x = reverse_rotate(a);
+	y = reverse_rotate(b);
 	printf("rrr\n");
+	op_counters[OP_RRR]++;
 	return (x + y);
 }

@@ -13,7 +13,7 @@
 
 #include "ft_push_swap.h"
 
-int	medium_core(t_stack **a, t_stack **b, int *array)
+int	medium_core(t_stack **a, t_stack **b, int *array, int *op_counters)
 {
 	static int	i;
 	int 		count;
@@ -31,14 +31,14 @@ int	medium_core(t_stack **a, t_stack **b, int *array)
 			chunk = len - i;
 		temp = malloc(sizeof(int) * chunk);
 		i = temporary_medium(array, chunk, i, temp);
-		count += rotate_medium(a, b, temp, chunk);
+		count += rotate_medium(a, b, temp, chunk, op_counters);
 		free(temp);
 		temp = NULL;
 	}
 	return (count);
 }
 
-int	medium_sort(t_stack **a, t_stack **b)
+int	medium_sort(t_stack **a, t_stack **b, int *op_counters)
 {
 	int	len;
 	int	*array;
@@ -48,12 +48,12 @@ int	medium_sort(t_stack **a, t_stack **b)
 	len = count_nodes(*a);
 	array = malloc(sizeof(int) * len);
 	array_sort(a, array);
-	count += medium_core(a, b, array);
-	count += push_findmax(a,b);
+	count += medium_core(a, b, array, op_counters);
+	count += push_findmax(a,b, op_counters);
 	return count;
 }
 
-int	simple_sort(t_stack **a, t_stack **b)
+/*int	simple_sort(t_stack **a, t_stack **b)
 {
 	int count;
 	int	i;
@@ -90,4 +90,4 @@ int	simple_sort(t_stack **a, t_stack **b)
 	}
 
 	return (count);
-}
+}*/

@@ -59,7 +59,7 @@ void block_shuffle(int *arr, int n, int block_size) {
 
 }*/
 
-int main ()
+/*int main ()
 {
 	char *a = "pim pew bimm\0hillo";
 	//int c = countword(a, ',');
@@ -67,4 +67,4 @@ int main ()
 	for(int i = 0; i < countword(a, 'i') + 1; i++)
 		printf("%d : %s\n",i, p[i]);
 	return 0;
-}
+}*/

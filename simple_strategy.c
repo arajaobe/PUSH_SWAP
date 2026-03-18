@@ -13,7 +13,7 @@
 
 #include "ft_push_swap.h"
 
-int	use_min(t_stack**a, t_stack**b, int len)
+int	use_min(t_stack**a, t_stack**b, int len, int *op_counters)
 {
 	int pos;
 	int count;
@@ -24,7 +24,7 @@ int	use_min(t_stack**a, t_stack**b, int len)
 	{
 		while (pos != len + 1)
 		{
-			count += rra(a);
+			count += rra(a, op_counters);
 			pos++;
 		}
 	}
@@ -32,14 +32,14 @@ int	use_min(t_stack**a, t_stack**b, int len)
 	{
 		while (pos != 1)
 		{
-			count += ra(a);
+			count += ra(a, op_counters);
 			pos--;
 		}
 	}
 	return (count);
 }
 
-int	use_max(t_stack**a, t_stack**b, int len)
+int	use_max(t_stack**a, t_stack**b, int len, int *op_counters)
 {
 	int pos;
 	int count;
@@ -50,7 +50,7 @@ int	use_max(t_stack**a, t_stack**b, int len)
 	{
 		while (pos != len + 1)
 		{
-			count += rra(a);
+			count += rra(a, op_counters);
 			pos++;
 		}
 	}
@@ -58,7 +58,7 @@ int	use_max(t_stack**a, t_stack**b, int len)
 	{
 		while (pos != 1)
 		{
-			count += ra(a);
+			count += ra(a, op_counters);
 			pos--;
 		}
 	}
@@ -67,7 +67,7 @@ int	use_max(t_stack**a, t_stack**b, int len)
 
 
 
-int	improved_simple_sort(t_stack **a, t_stack **b)
+int	improved_simple_sort(t_stack **a, t_stack **b, int *op_counters)
 {
 	int	dist_min;
 	int	dist_max;
@@ -82,16 +82,16 @@ int	improved_simple_sort(t_stack **a, t_stack **b)
 		dist_max = check_pos_from_edge(a, find_max(a, len));
 		if (dist_min - dist_max <= 2)
 		{
-			count += use_min(a, b, len);
-			count += pb(a, b);
+			count += use_min(a, b, len, op_counters);
+			count += pb(a, b, op_counters);
 		}
 		else
 		{
-			count += use_max(a, b, len);
-			count += pb(a, b);
+			count += use_max(a, b, len, op_counters);
+			count += pb(a, b, op_counters);
 		}
 		len = count_nodes(*a);
 	}
-	count += push_findmax(a, b);
+	count += push_findmax(a, b, op_counters);
 	return (count);
 }

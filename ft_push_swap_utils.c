@@ -69,6 +69,7 @@ t_stack	*ft_lstnew(int	content)
 	if (!head)
 		return (NULL);
 	head -> content = content;
+	head -> index = 0;
 	head -> next = NULL;
 	return (head);
 }
@@ -102,7 +103,7 @@ t_stack	*list_fillers(int stop, ...)
 	return one;
 }
 
-t_stack	*list_arg_fillers(int argc, char **argv)
+/*t_stack	*list_arg_fillers(int argc, char **argv)
 {
 
 	t_stack *one;
@@ -135,6 +136,32 @@ t_stack	*list_arg_fillers(int argc, char **argv)
 	}
 	return one;
 
+}*/
+
+
+t_stack	*list_arg_fillers(int argc, char **argv)
+{
+	t_stack *head;
+	t_stack	*current;
+	t_stack	*new_node;
+	int		i;
+
+	if (argc <= 1)
+	{
+		printf("error\n");
+		return NULL;
+	}
+	head = ft_lstnew(ft_atoi(argv[1]));
+	current = head;
+	i = 2;
+	while (i < argc)
+	{
+		new_node = ft_lstnew(ft_atoi(argv[i]));
+		current->next = new_node;
+		current = new_node;
+		i++;
+	}
+	return head;
 }
 int	count_nodes(t_stack *head)
 {
@@ -174,6 +201,25 @@ int	find_content(t_stack *head, int pos)
 	return res;
 }
 
+int	find_index(t_stack *head, int pos)
+{
+	int i;
+	int	res;
+	t_stack *p;
+
+	p = head;
+	i = 1;
+	if (pos == 0)
+		return 0;
+	while (i <= pos)
+	{
+		res = p->index;
+		p = p->next;
+		i++;
+	}
+	return res;
+}
+
 int search_content(t_stack **head, int find)
 {
 	int i;
@@ -189,6 +235,8 @@ int search_content(t_stack **head, int find)
 	}
 	return (0);
 }
+
+
 
 t_stack	*find_link(t_stack *head, int pos)
 {
@@ -218,7 +266,6 @@ void	fill_index(t_stack **head, int	*array)
 	int len;
 	t_stack	*temp;
 
-	temp = NULL;
 	len = count_nodes(*head);
 	i = 0;
 	while (i < len)
@@ -237,7 +284,6 @@ void	fill_index(t_stack **head, int	*array)
 		temp = NULL;
 		i++;
 	}
-
 }
 
 int	ft_atoi(const char *nptr)
@@ -327,6 +373,22 @@ int int_sqrt(int n)
 	return x;
 }
 
+int find_max_bits(t_stack **head, int len)
+{
+	int	max;
+	int i;
+
+	max = find_index(*head, 1);
+	i = 2;
+	while (i <= len)
+	{
+		if (find_index(*head, i) > max)
+			max = find_index(*head,i);
+		i++;
+	}
+	return (max);
+}
+
 int find_max(t_stack **head, int len)
 {
 	int	max;
@@ -406,7 +468,55 @@ int	check_pos_from_edge(t_stack **head, int check)
 	return (diff);
 }
 
+void	*ft_memset(void *s, int c, size_t n)
+{
+	unsigned char	*d;
 
+	d = s;
+	while (n--)
+		*d++ = (unsigned char)c;
+	return (s);
+}
+
+void	strategies(float disorder, char *strategy)
+{
+	char *strats;
+
+	if (disorder < 0.2)
+		strats = "O(n²)";
+	else if (disorder < 0.5)
+		strats = "O(n√n)";
+	else
+		strats = "O(n log n)";
+	if (strategy == "--simple")
+		printf("[bench] strategy:  Simple / O(n²)\n");
+	else if (strategy == "--medium")
+		printf("[bench] strategy:  Medium / O(n√n)\n");
+	else if (strategy == "--complex")
+		printf("[bench] strategy:  Complex / O(n log n)\n");
+	else  if (strategy == "--adaptive" || strategy =="")
+		printf("[bench] strategy:   Adaptive / %s\n", strats);
+}
+
+void 	print_bench(int *op_counters, float disorder_metrics, int total_ops, char *strate)
+{
+	printf("[bench] disorder:   %.2f%%\n", disorder_metrics * 100);
+	strategies(disorder_metrics, strate);
+	printf("[bench] total_ops:  %d\n", total_ops);
+	printf("[bench] sa: %d  sb: %d  ss: %d  pa: %d  pb: %d\n",
+		op_counters[OP_SA],
+		op_counters[OP_SB],
+		op_counters[OP_SS],
+		op_counters[OP_PA],
+		op_counters[OP_PB]);
+    printf("[bench] ra: %d  rb: %d  rr: %d  rra: %d  rrb: %d  rrr: %d\n",
+		op_counters[OP_RA],
+		op_counters[OP_RB],
+		op_counters[OP_RR],
+		op_counters[OP_RRA],
+		op_counters[OP_RRB],
+		op_counters[OP_RRR]);
+}
 //chunks 3
 //chunks 3 -1 = 2
 // start :3   | end : 5

@@ -13,7 +13,7 @@
 
 #include "ft_push_swap.h"
 
-int	solve_three(t_stack **a, t_stack **b)
+/*int	solve_three(t_stack **a, t_stack **b)
 {
 	int first;
 	int second;
@@ -55,17 +55,19 @@ int	solve_three(t_stack **a, t_stack **b)
 		print_stacks(*a, *b);
 	}
 	return (count);
-}
+}*/
 
 
 int main(int argc, char **argv)
 {
 	t_stack *a;
 	t_stack	*b;
-	int x;
-	float disorder;
-	b = NULL;
+	int 	x;
+	float 	disorder;
+	int op_counters[11];
 
+	b = NULL;
+	ft_memset(op_counters, 0, sizeof(op_counters));
 
 	/*int *tab;
 	tab = malloc (sizeof(int) * (argc - 1));
@@ -111,7 +113,7 @@ int main(int argc, char **argv)
 	a = list_arg_fillers(argc, argv);
 	//a = list_fillers(11, 4, 2, 1, 5, 3, 26, 9, 7, 8, 10, 11);
 	//a = list_fillers(5, 5, 2, 4, 1, 3);
-	//a = list_fillers(5, 5, 4, 3, 2, 1);
+	//a = list_fillers(5, 3, 5, 0, -6, 9);
 	disorder = disorder_metrics(a);
 
 
@@ -124,10 +126,16 @@ int main(int argc, char **argv)
 
 	//sa(&a);
 	//solve_three(&a);
-	x = medium_sort(&a,&b);
+	//x = improved_simple_sort(&a,&b, op_counters);
+	x = complex_sort(&a, &b, op_counters);
+	//print_index(a);
+	//print_bench(op_counters, disorder, x, "--simple");
 	//print_stacks(a,b);
+	//print_index(a);
 	//printf("number of operations: %d\n", x);
-	//printf("disorder: %.2f", disorder);
+	//printf("disorder: %.2f\n", disorder);
+	//res = op_counters[OP_SB];
+	//printf("PB: %d", res);
 	//push('b');
 	//push('b');
 	//print_stacks(a,b);

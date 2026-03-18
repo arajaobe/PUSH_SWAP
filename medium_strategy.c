@@ -14,7 +14,7 @@
 #include "ft_push_swap.h"
 
 
-int	calculate_medium(t_stack **a, int pos, int index, int len)
+int	calculate_medium(t_stack **a, int pos, int index, int len, int *op_counters)
 {
 	int count;
 
@@ -23,7 +23,7 @@ int	calculate_medium(t_stack **a, int pos, int index, int len)
 	{
 		while (pos != len + 1)
 		{
-			count += rra(a);
+			count += rra(a, op_counters);
 			pos++;
 		}
 	}
@@ -31,14 +31,14 @@ int	calculate_medium(t_stack **a, int pos, int index, int len)
 	{
 		while (pos != 1)
 		{
-			count += ra(a);
+			count += ra(a, op_counters);
 			pos--;
 		}
 	}
 	return (count);
 }
 
-int	rotate_medium(t_stack **a, t_stack **b, int *array, int size)
+int	rotate_medium(t_stack **a, t_stack **b, int *array, int size, int *op_counters)
 {
 	int	i;
 	int	len;
@@ -53,8 +53,8 @@ int	rotate_medium(t_stack **a, t_stack **b, int *array, int size)
 		pos = i;
 		if (intchr(find_content(*a, i), array, size))
 		{
-			count += calculate_medium(a, pos, i, len);
-			count += pb(a,b);
+			count += calculate_medium(a, pos, i, len, op_counters);
+			count += pb(a, b, op_counters);
 			i = 0;
 		}
 		len = count_nodes(*a);
@@ -64,7 +64,7 @@ int	rotate_medium(t_stack **a, t_stack **b, int *array, int size)
 }
 
 
-int	push_findmax_calculate(t_stack **b, int index, int len)
+int	push_findmax_calculate(t_stack **b, int index, int len, int *op_counters)
 {
 	int count;
 
@@ -73,7 +73,7 @@ int	push_findmax_calculate(t_stack **b, int index, int len)
 	{
 		while (index != len + 1)
 		{
-			count += rrb(b);
+			count += rrb(b, op_counters);
 			index++;
 		}
 	}
@@ -81,14 +81,14 @@ int	push_findmax_calculate(t_stack **b, int index, int len)
 	{
 		while (index != 1)
 		{
-			count += rb(b);
+			count += rb(b, op_counters);
 			index--;
 		}
 	}
 	return (count);
 }
 
-int	push_findmax(t_stack **a, t_stack **b)
+int	push_findmax(t_stack **a, t_stack **b, int *op_counters)
 {
 	int len;
 	int	count;
@@ -99,8 +99,8 @@ int	push_findmax(t_stack **a, t_stack **b)
 	while (*b)
 	{
 		i = search_content(b,  find_max(b, len));
-		count += push_findmax_calculate(b, i, len);
-		count += pa(a,b);
+		count += push_findmax_calculate(b, i, len, op_counters);
+		count += pa(a,b, op_counters);
 		len = count_nodes(*b);
 	}
 	return (count);
