@@ -6,7 +6,7 @@
 /*   By: arajaobe <arajaobe@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/16 13:37:45 by arajaobe          #+#    #+#             */
-/*   Updated: 2026/03/17 16:52:40 by arajaobe         ###   ########.fr       */
+/*   Updated: 2026/03/19 14:45:51 by arajaobe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,7 @@ int main(int argc, char **argv)
 	//x = improved_simple_sort(&a,&b, op_counters);
 	x = complex_sort(&a, &b, op_counters);
 	//print_index(a);
-	//print_bench(op_counters, disorder, x, "--simple");
+	//print_bench(op_counters, disorder, x);
 	//print_stacks(a,b);
 	//print_index(a);
 	//printf("number of operations: %d\n", x);

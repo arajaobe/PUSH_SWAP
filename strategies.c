@@ -6,7 +6,7 @@
 /*   By: arajaobe <arajaobe@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/16 13:38:01 by arajaobe          #+#    #+#             */
-/*   Updated: 2026/03/16 17:43:11 by arajaobe         ###   ########.fr       */
+/*   Updated: 2026/03/19 14:42:36 by arajaobe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,16 @@ int	medium_sort(t_stack **a, t_stack **b, int *op_counters)
 
 	count = 0;
 	len = count_nodes(*a);
+	if (len <= 10)
+	{
+		count += improved_simple_sort(a, b, op_counters);
+		return (count);
+	}
 	array = malloc(sizeof(int) * len);
 	array_sort(a, array);
 	count += medium_core(a, b, array, op_counters);
 	count += push_findmax(a,b, op_counters);
+	free(array);
 	return count;
 }
 

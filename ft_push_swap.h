@@ -6,7 +6,7 @@
 /*   By: arajaobe <arajaobe@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/09 12:58:04 by arajaobe          #+#    #+#             */
-/*   Updated: 2026/03/17 13:01:54 by arajaobe         ###   ########.fr       */
+/*   Updated: 2026/03/19 13:07:58 by arajaobe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int		medium_sort(t_stack **a, t_stack **b, int *op_counters);
 int		simple_sort(t_stack **a, t_stack **b, int *op_counters);
 int		improved_simple_sort(t_stack **a, t_stack **b, int *op_counters);
 void	strategies(float disorder, char *strategy);
-void 	print_bench(int *op_counters, float disorder_metrics, int total_ops, char *strategy);
+void 	print_bench(int *op_counters, float disorder_metrics, int total_ops);
 int		complex_sort(t_stack **a, t_stack **b, int *op_counters);
 void	rotate_index(t_stack	**head);
 int		find_index(t_stack *head, int pos);

@@ -6,7 +6,7 @@
 /*   By: arajaobe <arajaobe@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/09 12:58:21 by arajaobe          #+#    #+#             */
-/*   Updated: 2026/03/17 17:04:18 by arajaobe         ###   ########.fr       */
+/*   Updated: 2026/03/19 13:07:05 by arajaobe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -478,7 +478,7 @@ void	*ft_memset(void *s, int c, size_t n)
 	return (s);
 }
 
-void	strategies(float disorder, char *strategy)
+/*void	strategies(float disorder, char *strategy)
 {
 	char *strats;
 
@@ -496,12 +496,12 @@ void	strategies(float disorder, char *strategy)
 		printf("[bench] strategy:  Complex / O(n log n)\n");
 	else  if (strategy == "--adaptive" || strategy =="")
 		printf("[bench] strategy:   Adaptive / %s\n", strats);
-}
+}*/
 
-void 	print_bench(int *op_counters, float disorder_metrics, int total_ops, char *strate)
+void 	print_bench(int *op_counters, float disorder_metrics, int total_ops)
 {
 	printf("[bench] disorder:   %.2f%%\n", disorder_metrics * 100);
-	strategies(disorder_metrics, strate);
+	//strategies(disorder_metrics, strate);
 	printf("[bench] total_ops:  %d\n", total_ops);
 	printf("[bench] sa: %d  sb: %d  ss: %d  pa: %d  pb: %d\n",
 		op_counters[OP_SA],
