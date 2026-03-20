@@ -6,7 +6,7 @@
 /*   By: arajaobe <arajaobe@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/16 13:37:45 by arajaobe          #+#    #+#             */
-/*   Updated: 2026/03/19 14:45:51 by arajaobe         ###   ########.fr       */
+/*   Updated: 2026/03/20 17:57:43 by arajaobe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,8 @@ int main(int argc, char **argv)
 	//a = list_fillers(11, 4, 2, 1, 5, 3, 26, 9, 7, 8, 10, 11);
 	//a = list_fillers(5, 5, 2, 4, 1, 3);
 	//a = list_fillers(5, 3, 5, 0, -6, 9);
-	disorder = disorder_metrics(a);
+	//disorder = disorder_metrics(a);
+	disorder = 0.43;
 
 
 	//print_stacks(a,b);
@@ -129,11 +130,16 @@ int main(int argc, char **argv)
 	//x = improved_simple_sort(&a,&b, op_counters);
 	x = complex_sort(&a, &b, op_counters);
 	//print_index(a);
-	print_bench(op_counters, disorder, x);
+	//print_bench(op_counters, disorder, x);
+	ft_printf(2, "disorder ft: %f\n", disorder);
+	ft_printf(2, "disorder ft en %%: %f\n", disorder*100);
 	//print_stacks(a,b);
 	//print_index(a);
 	//printf("number of operations: %d\n", x);
-	ft_printf(2, "disorder: %f\n", disorder);
+	printf("disorder: %lf\n", disorder);
+	printf("disorder en %%: %.2lf\n", disorder * 100);
+
+
 	//res = op_counters[OP_SB];
 	//printf("PB: %d", res);
 	//push('b');

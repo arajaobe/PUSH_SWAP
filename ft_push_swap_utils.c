@@ -6,7 +6,7 @@
 /*   By: arajaobe <arajaobe@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/09 12:58:21 by arajaobe          #+#    #+#             */
-/*   Updated: 2026/03/19 13:07:05 by arajaobe         ###   ########.fr       */
+/*   Updated: 2026/03/20 18:31:30 by arajaobe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -497,10 +497,33 @@ void	*ft_memset(void *s, int c, size_t n)
 	else  if (strategy == "--adaptive" || strategy =="")
 		printf("[bench] strategy:   Adaptive / %s\n", strats);
 }*/
+void	hundred(int disorder)
+{
+	int before_point;
+	int res;
+	int res2;
+	double decimal_point;
+
+	before_point = disorder;
+	decimal_point = disorder * 100;
+	res = decimal_point;
+	before_point = decimal_point * 100 - (res * 100);
+	res2 = before_point;
+	if (res2 == 0)
+		{
+			ft_printf(2, "%f", decimal_point);
+			ft_printf(2, "0\n");
+		}
+	else
+		ft_printf(2, "%f\n", decimal_point);
+
+}
+
 
 void 	print_bench(int *op_counters, double disorder_metrics, int total_ops)
 {
-	ft_printf(2, "[bench] disorder:   %f%%\n", disorder_metrics * 100);
+	ft_printf(2, "[bench] disorder:   ");
+	hundred(disorder_metrics);
 	//strategies(disorder_metrics, strate);
 	ft_printf(2, "[bench] total_ops:  %d\n", total_ops);
 	ft_printf(2, "[bench] sa: %d  sb: %d  ss: %d  pa: %d  pb: %d\n",
