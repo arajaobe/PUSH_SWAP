@@ -14,6 +14,7 @@
 #ifndef FT_PUSH_SWAP_H
 # define FT_PUSH_SWAP_H
 
+# include "ft_printf/ft_printf.h"
 # include <stdio.h>
 # include <stdlib.h>
 # include <stdarg.h>
@@ -61,7 +62,7 @@ int		rrb(t_stack **b, int *op_counters);
 int		rrr(t_stack **a, t_stack **b, int *op_counters);
 int		count_nodes(t_stack *head);
 int		find_content(t_stack *head, int pos);
-float	disorder_metrics(t_stack *head);
+double	disorder_metrics(t_stack *head);
 void	insertsort(int	*tab, int size);
 int		search_content(t_stack **head, int find);
 void	fill_index(t_stack **head, int	*array);
@@ -83,8 +84,8 @@ int		medium_core(t_stack **a, t_stack **b, int *array, int *op_counters);
 int		medium_sort(t_stack **a, t_stack **b, int *op_counters);
 int		simple_sort(t_stack **a, t_stack **b, int *op_counters);
 int		improved_simple_sort(t_stack **a, t_stack **b, int *op_counters);
-void	strategies(float disorder, char *strategy);
-void 	print_bench(int *op_counters, float disorder_metrics, int total_ops);
+void	strategies(double disorder, char *strategy);
+void 	print_bench(int *op_counters, double disorder_metrics, int total_ops);
 int		complex_sort(t_stack **a, t_stack **b, int *op_counters);
 void	rotate_index(t_stack	**head);
 int		find_index(t_stack *head, int pos);

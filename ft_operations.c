@@ -30,7 +30,7 @@ int	sa(t_stack **a,  int *op_counters)
 	int x;
 
 	x = swap(a);
-	printf("sa\n");
+	ft_printf(1, "sa\n");
 	op_counters[OP_SA]++;
 	return (x);
 }
@@ -40,7 +40,7 @@ int	sb(t_stack **b, int *op_counters)
 	int x;
 
 	x = swap(b);
-	printf("sb\n");
+	ft_printf(1, "sb\n");
 	op_counters[OP_SB]++;
 	return (x);
 
@@ -52,7 +52,7 @@ int	ss(t_stack **a, t_stack **b, int *op_counters)
 	int y;
 	x = swap(a);
 	y = swap(b);
-	printf("ss\n");
+	ft_printf(1, "ss\n");
 	op_counters[OP_SS]++;
 	return (x + y);
 }
@@ -67,7 +67,7 @@ int	pb(t_stack **a, t_stack **b, int *op_counters)
 	*a = (*a)->next;
 	temp->next = *b;
 	*b = temp;
-	printf("pb\n");
+	ft_printf(1, "pb\n");
 	op_counters[OP_PB]++;
 	return (1);
 }
@@ -82,7 +82,7 @@ int	pa(t_stack **a, t_stack **b, int *op_counters)
 	*b = (*b)->next;
 	temp->next = *a;
 	*a = temp;
-	printf("pa\n");
+	ft_printf(1, "pa\n");
 	op_counters[OP_PA]++;
 	return (1);
 }
@@ -154,7 +154,7 @@ int	ra(t_stack **a, int *op_counters)
 
 	x = rotate(a);
 	rotate_index(a);
-	printf("ra\n");
+	ft_printf(1, "ra\n");
 	op_counters[OP_RA]++;
 	return (x);
 }
@@ -165,7 +165,7 @@ int	rb(t_stack **b, int *op_counters)
 
 	x = rotate(b);
 	rotate_index(b);
-	printf("rb\n");
+	ft_printf(1, "rb\n");
 	op_counters[OP_RB]++;
 	return (x);
 }
@@ -177,7 +177,7 @@ int	rr(t_stack **a, t_stack **b, int *op_counters)
 
 	x = rotate(a);
 	y = rotate(b);
-	printf("rr\n");
+	ft_printf(1, "rr\n");
 	op_counters[OP_RR]++;
 	return (x + y);
 }
@@ -187,7 +187,7 @@ int	rra(t_stack **a, int *op_counters)
 	int x;
 
 	x = reverse_rotate(a);
-	printf("rra\n");
+	ft_printf(1, "rra\n");
 	op_counters[OP_RRA]++;
 	return (x);
 }
@@ -196,7 +196,7 @@ int	rrb(t_stack **b, int *op_counters)
 {
 	int	x;
 	x = reverse_rotate(b);
-	printf("rrb\n");
+	ft_printf(1, "rrb\n");
 	op_counters[OP_RRB]++;
 	return (x);
 }
@@ -208,7 +208,7 @@ int	rrr(t_stack **a, t_stack **b, int *op_counters)
 
 	x = reverse_rotate(a);
 	y = reverse_rotate(b);
-	printf("rrr\n");
+	ft_printf(1, "rrr\n");
 	op_counters[OP_RRR]++;
 	return (x + y);
 }

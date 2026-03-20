@@ -312,7 +312,7 @@ int	ft_atoi(const char *nptr)
 	return (sign * res);
 }
 
-float	disorder_metrics(t_stack *head)
+double	disorder_metrics(t_stack *head)
 {
 	int	mistakes;
 	int total_pair;
@@ -338,7 +338,7 @@ float	disorder_metrics(t_stack *head)
 		}
 		i++;
 	}
-	return ((float)mistakes / total_pair);
+	return ((double)mistakes / total_pair);
 }
 void	insertsort(int	*tab, int size)
 {
@@ -498,18 +498,18 @@ void	*ft_memset(void *s, int c, size_t n)
 		printf("[bench] strategy:   Adaptive / %s\n", strats);
 }*/
 
-void 	print_bench(int *op_counters, float disorder_metrics, int total_ops)
+void 	print_bench(int *op_counters, double disorder_metrics, int total_ops)
 {
-	printf("[bench] disorder:   %.2f%%\n", disorder_metrics * 100);
+	ft_printf(2, "[bench] disorder:   %f%%\n", disorder_metrics * 100);
 	//strategies(disorder_metrics, strate);
-	printf("[bench] total_ops:  %d\n", total_ops);
-	printf("[bench] sa: %d  sb: %d  ss: %d  pa: %d  pb: %d\n",
+	ft_printf(2, "[bench] total_ops:  %d\n", total_ops);
+	ft_printf(2, "[bench] sa: %d  sb: %d  ss: %d  pa: %d  pb: %d\n",
 		op_counters[OP_SA],
 		op_counters[OP_SB],
 		op_counters[OP_SS],
 		op_counters[OP_PA],
 		op_counters[OP_PB]);
-    printf("[bench] ra: %d  rb: %d  rr: %d  rra: %d  rrb: %d  rrr: %d\n",
+    ft_printf(2, "[bench] ra: %d  rb: %d  rr: %d  rra: %d  rrb: %d  rrr: %d\n",
 		op_counters[OP_RA],
 		op_counters[OP_RB],
 		op_counters[OP_RR],
