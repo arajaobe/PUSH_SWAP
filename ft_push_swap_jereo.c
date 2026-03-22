@@ -138,10 +138,11 @@ int main(int argc, char **argv)
 	//x = improved_simple_sort(&a,&b, op_counters);
 	//x = complex_sort(&a, &b, op_counters);
 	//print_index(a);
-	//print_bench(op_counters, disorder, x);
+
 	print_stacks(a,b);
 	//print_index(a);
-	printf("number of operations: %d\n", x);
+	//printf("number of operations: %d\n", x);
+	print_bench(op_counters, disorder, x);
 	//printf("disorder: %.2f\n", disorder);
 	//res = op_counters[OP_SB];
 	//printf("PB: %d", res);

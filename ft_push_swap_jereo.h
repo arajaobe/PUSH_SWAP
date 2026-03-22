@@ -14,6 +14,7 @@
 #ifndef FT_PUSH_SWAP_H
 # define FT_PUSH_SWAP_H
 
+# include "ft_printf/ft_printf.h"
 # include <stdio.h>
 # include <stdlib.h>
 # include <stdarg.h>
@@ -61,7 +62,7 @@ int		rrb(t_stack **b, int *op_counters);
 int		rrr(t_stack **a, t_stack **b, int *op_counters);
 int		count_nodes(t_stack *head);
 int		find_content(t_stack *head, int pos);
-float	disorder_metrics(t_stack *head);
+double	disorder_metrics(t_stack *head);
 void	insertsort(int	*tab, int size);
 int		search_content(t_stack **head, int find);
 void	fill_index(t_stack **head, int	*array);
@@ -69,13 +70,13 @@ int		ft_atoi(const char *nptr);
 void	*ft_memset(void *s, int c, size_t n);
 void	print_index(t_stack *head);
 void	array_sort(t_stack **a, int *array);
-int		intchr(int to_find, int *range, int size);
+int		intchr(int to_find, int *range, size_t size);
 int		int_sqrt(int n);
 int		find_max(t_stack **head, int len);
 int 	find_min (t_stack **head, int len);
 int		check_pos_from_edge(t_stack **head, int check);
-int		calculate_medium(t_stack **a, int pos, int index, int len, int *op_counters);
-int		rotate_medium(t_stack **a, t_stack **b, int *array, int size, int *op_counters);
+int		calculate_medium(t_stack **a, int index, int len, int *op_counters);
+int		rotate_medium(t_stack **a, t_stack **b, int *array, size_t size, int *op_counters);
 int		push_findmax_calculate(t_stack **b, int index, int len, int *op_counters);
 int		push_findmax(t_stack **a, t_stack **b, int *op_counters);
 int		temporary_medium(int *array, int size, int index, int *temp);
@@ -84,7 +85,7 @@ int		medium_sort(t_stack **a, t_stack **b, int *op_counters);
 int		simple_sort(t_stack **a, t_stack **b, int *op_counters);
 int		improved_simple_sort(t_stack **a, t_stack **b, int *op_counters);
 void	strategies(float disorder, char *strategy);
-void 	print_bench(int *op_counters, float disorder_metrics, int total_ops);
+void 	print_bench(int *op_counters, double disorder_metrics, int total_ops);
 int		complex_sort(t_stack **a, t_stack **b, int *op_counters);
 void	rotate_index(t_stack	**head);
 int		find_index(t_stack *head, int pos);
@@ -99,10 +100,7 @@ int		check_flags_position(int argc, char **argv);
 int		check_argv(int argc, char **argv);
 int		medium_sort(t_stack **a, t_stack **b, int *op_counters);
 int		use_fonction(t_stack **a, t_stack **b, int *op_operation, char **argv);
-int		use_adaptive_fonction(t_stack **a, t_stack **b, int *op_operation, float disorder);
+int		use_adaptive_fonction(t_stack **a, t_stack **b, int *op_operation, double disorder);
 int		check_argv_adaptive(int position, char **argv);
-
-
-
 
 #endif
