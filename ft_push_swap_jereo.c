@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_push_swap.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: samrazaf <samrazaf@student.42antananari    +#+  +:+       +#+        */
+/*   By: arajaobe <arajaobe@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/16 13:37:45 by arajaobe          #+#    #+#             */
-/*   Updated: 2026/03/22 16:27:58 by samrazaf         ###   ########.fr       */
+/*   Updated: 2026/03/23 16:32:35 by arajaobe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,8 @@ int main(int argc, char **argv)
 	t_stack *a;
 	t_stack	*b;
 	int 	x;
-	float 	disorder;
+	double 	disorder;
+	double test;
 	int op_counters[11];
 
 	b = NULL;
@@ -115,6 +116,7 @@ int main(int argc, char **argv)
 	//a = list_fillers(5, 5, 2, 4, 1, 3);
 	//a = list_fillers(5, 3, 5, 0, -6, 9);
 	disorder = disorder_metrics(a);
+	//disorder = 0.42;
 
 
 	//print_stacks(a,b);
@@ -123,27 +125,25 @@ int main(int argc, char **argv)
 	//print_index(a);
 
 	//print_stacks(a,b);
+
+	//sa(&a);
+	//solve_three(&a);
+	//x = medium_sort(&a,&b, op_counters);
+	//x = complex_sort(&a, &b, op_counters);
+	//print_index(a);
+	//print_bench(op_counters, disorder, x);
+
+
+	//print_index(a);
+	//printf("number of operations: %d\n", x);
 	if (check_argv_adaptive(check_flags_position(argc, argv), argv))
 		x = use_adaptive_fonction(&a, &b , op_counters, disorder);
 	else
 		x = use_fonction(&a, &b, op_counters, argv);
 
-
-	//int p;
-	//p = check_argv(argc, argv);
-	//printf("%d\n", p);
-
-	//sa(&a);
-	//solve_three(&a);
-	//x = improved_simple_sort(&a,&b, op_counters);
-	//x = complex_sort(&a, &b, op_counters);
-	//print_index(a);
-
 	print_stacks(a,b);
-	//print_index(a);
-	//printf("number of operations: %d\n", x);
 	print_bench(op_counters, disorder, x);
-	//printf("disorder: %.2f\n", disorder);
+
 	//res = op_counters[OP_SB];
 	//printf("PB: %d", res);
 	//push('b');

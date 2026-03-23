@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_push_swap_utils.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: samrazaf <samrazaf@student.42antananari    +#+  +:+       +#+        */
+/*   By: arajaobe <arajaobe@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/09 12:58:21 by arajaobe          #+#    #+#             */
-/*   Updated: 2026/03/22 16:29:24 by samrazaf         ###   ########.fr       */
+/*   Updated: 2026/03/23 15:31:25 by arajaobe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,200 +139,30 @@ t_stack	*list_fillers(int stop, ...)
 }*/
 
 
-//t_stack	*list_arg_fillers(int argc, char **argv)
-//{
-//	t_stack *head;
-//	t_stack	*current;
-//	t_stack	*new_node;
-//	int		i;
-
-//	if (argc <= 1)
-//	{
-//		printf("error\n");
-//		return NULL;
-//	}
-//	head = ft_lstnew(ft_atoi(argv[1]));
-//	current = head;
-//	i = 2;
-//	while (i < argc)
-//	{
-//		new_node = ft_lstnew(ft_atoi(argv[i]));
-//		current->next = new_node;
-//		current = new_node;
-//		i++;
-//	}
-//	return head;
-//}
-
-int	check_flags(char *str)
-{
-	if ((!ft_strcmp(str, "--simple")) ||
-	(!ft_strcmp(str, "--medium")) ||
-	(!ft_strcmp(str, "--complex")) ||
-	(!ft_strcmp(str, "--adaptive")))
-		return (0);
-	return (1);
-}
-
-int	check_flags_position(int argc, char **argv)
-{
-	if (!check_flags(argv[1]) && check_flags(argv[argc - 1]))
-		return (1);
-	else if (!check_flags(argv[argc - 1]) && check_flags(argv[1]))
-		return (argc - 1);
-	else
-		return (0);
-}
-
-int	check_argv(int argc, char **argv)
-{
-	int	i;
-	int	j;
-
-	if (!check_flags_position(argc, argv))
-		return (0);
-	else if (check_flags_position(argc, argv) == 1)
-		j = 2;
-	else
-	{
-		j = 1;
-		argc = argc - 1;
-	}
-	while (j < argc)
-	{
-		i = 0;
-		while (argv[j][i] != '\0')
-		{
-			if (!ft_isdigit(argv[j][i]) && argv[j][i] != ' ')
-				return (0);
-			i ++;
-		}
-		j ++;
-	}
-	return (1);
-}
-
-int	check_argv_adaptive(int position, char **argv)
-{
-	if (!ft_strcmp(argv[position], "--adaptive"))
-		return (1);
-	return (0);
-}
-
-int	use_fonction(t_stack **a, t_stack **b, int *op_operation, char **argv)
-{
-	int	i;
-	int	count;
-	int check;
-	int check2;
-	int check3;
-
-	i = 1;
-	check = 0;
-	check2 = 0;
-	check3 = 0;
-	count = 0;
-
-	while (argv[i])
-	{
-		if (ft_strcmp(argv[i], "d"))
-			check = 1;
-		i++;
-	}
-	if (check == 1)
-		count = improved_simple_sort(a, b, op_operation);
-	return (count);
-}
-
-int	use_adaptive_fonction(t_stack **a, t_stack **b, int *op_operation, double disorder)
-{
-	int		count;
-
-	count = 0;
-	if (disorder < 0.2)
-	{
-		count = improved_simple_sort(a, b, op_operation);
-		ft_printf(2, "simple");
-	}
-	else if (disorder >= 0.2 && disorder < 0.5)
-	{
-		count = medium_sort(a, b, op_operation);
-		ft_printf(2, "medium");
-	}
-	else
-	{
-		count = complex_sort(a, b, op_operation);
-		ft_printf(2, "complex");
-	}
-	return (count);
-}
-t_stack	*list_arg_fillers(int argc, char **argv)
+/*t_stack	*list_arg_fillers(int argc, char **argv)
 {
 	t_stack *head;
 	t_stack	*current;
 	t_stack	*new_node;
 	int		i;
-	int		j;
-	char	**tab;
 
-	if (argc <= 1 || !check_argv(argc, argv))
+	if (argc <= 1)
 	{
-		ft_printf(2, "error\n");
-		exit(1);
+		printf("error\n");
 		return NULL;
 	}
-	if (check_flags_position(argc, argv) == 1)
-		i = 2;
-	else if (check_flags_position(argc, argv) > 1)
-	{
-		i = 1;
-		argc = argc - 1;
-	}
-	if (ft_strchr((argv[i]), ' '))
-	{
-		tab = ft_split(argv[i], ' ');
-		head = ft_lstnew(ft_atoi(tab[0]));
-		current = head;
-		j = 1;
-		while (tab[j])
-		{
-			new_node = ft_lstnew(ft_atoi(tab[j]));
-			current->next = new_node;
-			current = new_node;
-			j ++;
-		}
-	}
-	else
-	{
-		head = ft_lstnew(ft_atoi(argv[i]));
-		current = head;
-	}
-	i ++;
+	head = ft_lstnew(ft_atoi(argv[1]));
+	current = head;
+	i = 2;
 	while (i < argc)
 	{
-		if (ft_strchr((argv[i]), ' '))
-		{
-			tab = ft_split(argv[i], ' ');
-			j = 0;
-			while (tab[j])
-			{
-				new_node = ft_lstnew(ft_atoi(tab[j]));
-				current->next = new_node;
-				current = new_node;
-				j ++;
-			}
-		}
-		else
-		{
-			new_node = ft_lstnew(ft_atoi(argv[i]));
-			current->next = new_node;
-			current = new_node;
-		}
+		new_node = ft_lstnew(ft_atoi(argv[i]));
+		current->next = new_node;
+		current = new_node;
 		i++;
 	}
 	return head;
-}
-
+}*/
 int	count_nodes(t_stack *head)
 {
 	int	count;
@@ -485,10 +315,10 @@ int	ft_atoi(const char *nptr)
 double	disorder_metrics(t_stack *head)
 {
 	int	mistakes;
-	int total_pair;
+	int	total_pair;
 	int	i;
 	int	j;
-	int len;
+	int	len;
 
 	mistakes = 0;
 	total_pair = 0;
@@ -594,7 +424,7 @@ int find_min (t_stack **head, int len)
 int	intchr(int to_find, int *range, size_t size)
 {
 	int		res;
-	size_t	 i;
+	size_t	i;
 
 	res = 0;
 	i = 0;
@@ -660,14 +490,13 @@ void	*ft_memset(void *s, int c, size_t n)
 		strats = "O(n log n)";
 	if (strategy == "--simple")
 		printf("[bench] strategy:  Simple / O(n²)\n");
-	else if (strategy == "--medium")
+	else if (strategy == "--medium")double
 		printf("[bench] strategy:  Medium / O(n√n)\n");
-	else if (strategy == "--complex")
+	else if (strategy == "--complex")double
 		printf("[bench] strategy:  Complex / O(n log n)\n");
 	else  if (strategy == "--adaptive" || strategy =="")
 		printf("[bench] strategy:   Adaptive / %s\n", strats);
 }*/
-
 void	hundred(double disorder)
 {
 	double	before_point;
@@ -682,10 +511,10 @@ void	hundred(double disorder)
 	if (res == 0)
 		{
 			ft_printf(2, "%f", decimal_point);
-			ft_printf(2, "0\n");
+			ft_printf(2, "0%%\n");
 		}
 	else
-		ft_printf(2, "%f\n", decimal_point);
+		ft_printf(2, "%f%%\n", decimal_point);
 
 }
 
@@ -710,176 +539,6 @@ void 	print_bench(int *op_counters, double disorder_metrics, int total_ops)
 		op_counters[OP_RRB],
 		op_counters[OP_RRR]);
 }
-
-
-static	int	count_words(const char *str, char c)
-{
-	int		i;
-	int		words;
-
-	i = 0;
-	words = 0;
-	while (str[i])
-	{
-		if (str[i] != c && (str[i + 1] == c || str[i + 1] == '\0'))
-			words++;
-		i++;
-	}
-	return (words);
-}
-
-static	char	**free_tab(char **tab, int j)
-{
-	while (j >= 0)
-	{
-		free(tab[j]);
-		j--;
-	}
-	free (tab);
-	return (NULL);
-}
-
-static	int	word_len(const char *str, char c)
-{
-	int	len;
-
-	len = 0;
-	while (str[len] && str[len] != c)
-	{
-		len++;
-	}
-	return (len);
-}
-
-static	char	**sub_split(char **tab, char const *s, char c)
-{
-	int		i;
-	int		len;
-	int		j;
-
-	i = 0;
-	j = 0;
-	while (s[i])
-	{
-		if (s[i] != c)
-		{
-			len = word_len(&s[i], c);
-			tab[j] = ft_substr(s, i, len);
-			if (!tab[j])
-			{
-				free_tab(tab, j - 1);
-				return (NULL);
-			}
-			i += len;
-			j++;
-		}
-		else
-			i++;
-	}
-	tab[j] = NULL;
-	return (tab);
-}
-
-char	**ft_split(char	const *s, char c)
-{
-	char	**tab;
-	size_t	word;
-	char	**result;
-
-	word = count_words(s, c);
-	tab = (char **)malloc(sizeof(char *) * (word + 1));
-	if (!tab)
-		return (NULL);
-	if (!s)
-		return (NULL);
-	result = sub_split(tab, s, c);
-	return (result);
-}
-
-char	*ft_strchr(const char *s, int c)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (s[i])
-		i++;
-	j = 0;
-	while (j <= i)
-	{
-		if ((unsigned char)s[j] == (unsigned char)c)
-			return ((char *)&s[j]);
-		j ++;
-	}
-	if ((unsigned char)c == '\0')
-		return ((char *)&s[j]);
-	return (0);
-}
-
-int	ft_strcmp(const char *s1, const char *s2)
-{
-	size_t	i;
-
-	i = 0;
-	while (s1[i] != '\0' && s2[i] != '\0')
-	{
-		if (s1[i] != s2[i])
-			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
-		i ++;
-	}
-	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
-}
-
-static size_t	ft_strlen(const char *s)
-{
-	size_t	i;
-
-	i = 0;
-	while (s[i] != '\0')
-	{
-		i ++;
-	}
-	return (i);
-}
-
-char	*ft_substr(const char *s, unsigned int start, size_t len)
-{
-	size_t	i;
-	char	*ptr;
-
-	if (!s)
-		return (NULL);
-	if (ft_strlen(s) <= (size_t)start)
-	{
-		ptr = malloc(1);
-		if (!ptr)
-			return (NULL);
-		ptr[0] = '\0';
-		return (ptr);
-	}
-	if (len > ft_strlen(s) - start)
-		len = ft_strlen(s) - start;
-	ptr = malloc(len + 1);
-	if (ptr == NULL)
-		return (NULL);
-	i = 0;
-	while (i < len)
-	{
-		ptr[i++] = s[start++];
-	}
-	ptr[i] = '\0';
-	return (ptr);
-}
-
-int	ft_isdigit(int c)
-{
-	if (c >= '0' && c <= '9')
-	{
-		return (1);
-	}
-	return (0);
-}
-
 //chunks 3
 //chunks 3 -1 = 2
 // start :3   | end : 5

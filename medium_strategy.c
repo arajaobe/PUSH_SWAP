@@ -6,7 +6,7 @@
 /*   By: arajaobe <arajaobe@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/16 13:37:53 by arajaobe          #+#    #+#             */
-/*   Updated: 2026/03/16 17:18:10 by arajaobe         ###   ########.fr       */
+/*   Updated: 2026/03/23 16:48:15 by arajaobe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,12 @@
 #include "ft_push_swap.h"
 
 
-int	calculate_medium(t_stack **a, int pos, int index, int len, int *op_counters)
+int	calculate_medium(t_stack **a, int index, int len, int *op_counters)
 {
 	int count;
+	int pos;
 
+	pos = index;
 	count  = 0;
 	if (index> (len / 2) + 1)
 	{
@@ -38,7 +40,7 @@ int	calculate_medium(t_stack **a, int pos, int index, int len, int *op_counters)
 	return (count);
 }
 
-int	rotate_medium(t_stack **a, t_stack **b, int *array, int size, int *op_counters)
+int	rotate_medium(t_stack **a, t_stack **b, int *array, size_t size, int *op_counters)
 {
 	int	i;
 	int	len;
@@ -46,6 +48,7 @@ int	rotate_medium(t_stack **a, t_stack **b, int *array, int size, int *op_counte
 	int count;
 
 	len = count_nodes(*a);
+	size = sizeof(array);
 	count = 0;
 	i = 1;
 	while (i <= len)
@@ -53,7 +56,7 @@ int	rotate_medium(t_stack **a, t_stack **b, int *array, int size, int *op_counte
 		pos = i;
 		if (intchr(find_content(*a, i), array, size))
 		{
-			count += calculate_medium(a, pos, i, len, op_counters);
+			count += calculate_medium(a, i, len, op_counters);
 			count += pb(a, b, op_counters);
 			i = 0;
 		}
