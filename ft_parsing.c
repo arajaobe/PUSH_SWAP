@@ -36,7 +36,7 @@ int	check_argv(int argc, char **argv)
 {
 	int	i;
 	int	j;
-
+	
 	if (!check_flags_position(argc, argv))
 		return (0);
 	else if (check_flags_position(argc, argv) == 1)
@@ -51,7 +51,7 @@ int	check_argv(int argc, char **argv)
 		i = 0;
 		while (argv[j][i] != '\0')
 		{
-			if (!ft_isdigit(argv[j][i]) && argv[j][i] != ' ')
+			if (!ft_isdigit(argv[j][i]) && argv[j][i] != ' ' &&  argv[j][i] != '-' && argv[j][i] != '+')
 				return (0);
 			i ++;
 		}

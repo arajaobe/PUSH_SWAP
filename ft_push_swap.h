@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_push_swap.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arajaobe <arajaobe@student.42antananari    +#+  +:+       +#+        */
+/*   By: samrazaf <samrazaf@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/09 12:58:04 by arajaobe          #+#    #+#             */
-/*   Updated: 2026/03/19 13:07:58 by arajaobe         ###   ########.fr       */
+/*   Updated: 2026/03/22 16:18:27 by samrazaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,13 +70,13 @@ int		ft_atoi(const char *nptr);
 void	*ft_memset(void *s, int c, size_t n);
 void	print_index(t_stack *head);
 void	array_sort(t_stack **a, int *array);
-int		intchr(int to_find, int *range, int size);
+int		intchr(int to_find, int *range, size_t size);
 int		int_sqrt(int n);
 int		find_max(t_stack **head, int len);
 int 	find_min (t_stack **head, int len);
 int		check_pos_from_edge(t_stack **head, int check);
-int		calculate_medium(t_stack **a, int pos, int index, int len, int *op_counters);
-int		rotate_medium(t_stack **a, t_stack **b, int *array, int size, int *op_counters);
+int		calculate_medium(t_stack **a, int index, int len, int *op_counters);
+int		rotate_medium(t_stack **a, t_stack **b, int *array, size_t size, int *op_counters);
 int		push_findmax_calculate(t_stack **b, int index, int len, int *op_counters);
 int		push_findmax(t_stack **a, t_stack **b, int *op_counters);
 int		temporary_medium(int *array, int size, int index, int *temp);
@@ -84,12 +84,25 @@ int		medium_core(t_stack **a, t_stack **b, int *array, int *op_counters);
 int		medium_sort(t_stack **a, t_stack **b, int *op_counters);
 int		simple_sort(t_stack **a, t_stack **b, int *op_counters);
 int		improved_simple_sort(t_stack **a, t_stack **b, int *op_counters);
-void	strategies(double disorder, char *strategy);
+void	strategies(float disorder, char *strategy);
 void 	print_bench(int *op_counters, double disorder_metrics, int total_ops);
 int		complex_sort(t_stack **a, t_stack **b, int *op_counters);
 void	rotate_index(t_stack	**head);
 int		find_index(t_stack *head, int pos);
 int 	find_max_bits(t_stack **head, int len);
-
+char	**ft_split(char	const *s, char c);
+char	*ft_strchr(const char *s, int c);
+char	*ft_substr(const char *s, unsigned int start, size_t len);
+int		ft_strcmp(const char *s1, const char *s2);
+int		ft_isdigit(int c);
+int		check_flags(char *str);
+int		check_flags_position(int argc, char **argv);
+int		check_argv(int argc, char **argv);
+int		medium_sort(t_stack **a, t_stack **b, int *op_counters);
+int		use_fonction(t_stack **a, t_stack **b, int *op_operation, char **argv);
+int		use_adaptive_fonction(t_stack **a, t_stack **b, int *op_operation, double disorder);
+int		check_argv_adaptive(int position, char **argv);
+int		duplicate(t_stack **a);
+void	ft_lstclear(t_stack **lst);
 
 #endif

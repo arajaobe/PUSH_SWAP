@@ -139,7 +139,7 @@ t_stack	*list_fillers(int stop, ...)
 }*/
 
 
-t_stack	*list_arg_fillers(int argc, char **argv)
+/*t_stack	*list_arg_fillers(int argc, char **argv)
 {
 	t_stack *head;
 	t_stack	*current;
@@ -162,7 +162,7 @@ t_stack	*list_arg_fillers(int argc, char **argv)
 		i++;
 	}
 	return head;
-}
+}*/
 int	count_nodes(t_stack *head)
 {
 	int	count;
@@ -421,7 +421,7 @@ int find_min (t_stack **head, int len)
 	return (min);
 }
 
-int	intchr(int to_find, int *range, int size)
+int	intchr(int to_find, int *range, size_t size)
 {
 	int res;
 	int i;
@@ -497,7 +497,7 @@ void	*ft_memset(void *s, int c, size_t n)
 	else  if (strategy == "--adaptive" || strategy =="")
 		printf("[bench] strategy:   Adaptive / %s\n", strats);
 }*/
-void	hundred(int disorder)
+void	hundred(double disorder)
 {
 	int before_point;
 	int res;
@@ -540,6 +540,51 @@ void 	print_bench(int *op_counters, double disorder_metrics, int total_ops)
 		op_counters[OP_RRB],
 		op_counters[OP_RRR]);
 }
+
+
+int	duplicate(t_stack **a)
+{
+	int i;
+	int j;
+	int check;
+	int pos;
+	int size;
+
+	size = count_nodes(*a);
+	check = 0;
+	i = 1;
+	while (i <= size)
+	{
+		pos = find_content(*a, i);
+		j = i + 1;
+		while (j <= size)
+		{
+			if (pos == find_content(*a, j))
+			{
+				check = 1;
+				return (check);
+			}
+			j++;
+		}
+		i++;
+	}
+	return (check);
+}
+
+void	ft_lstclear(t_stack **lst)
+{
+	t_stack	*temp;
+
+	if (!lst)
+		return ;
+	while (*lst != NULL)
+	{
+		temp = (*lst)->next;
+		free(*lst);
+		*lst = temp;
+	}
+}
+
 //chunks 3
 //chunks 3 -1 = 2
 // start :3   | end : 5
