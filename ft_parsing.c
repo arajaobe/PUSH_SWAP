@@ -6,7 +6,7 @@
 /*   By: arajaobe <arajaobe@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/22 16:52:51 by samrazaf          #+#    #+#             */
-/*   Updated: 2026/03/23 16:38:35 by arajaobe         ###   ########.fr       */
+/*   Updated: 2026/03/25 14:41:14 by arajaobe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,13 @@ int	check_flags(char *str)
 	return (1);
 }
 
+int check_flags_bench(char *str)
+{
+	if (!ft_strcmp(str, "--bench"))
+		return (0);
+	return (1);
+}
+
 int	check_flags_position(int argc, char **argv)
 {
 	if (!check_flags(argv[1]) && check_flags(argv[argc - 1]))
@@ -32,11 +39,27 @@ int	check_flags_position(int argc, char **argv)
 		return (0);
 }
 
+int checks_flags_position_double(int argc, char **argv)
+{
+	if (((!check_flags(argv[1]) && !check_flags_bench(argv[2])) && check_flags(argv[argc - 1]) && check_flags_bench(argv[argc - 2])) ||
+		((!check_flags(argv[2]) && !check_flags_bench(argv[1])) && check_flags(argv[argc - 2]) && check_flags_bench(argv[argc - 1])) ||
+		((!check_flags(argv[1]) && !check_flags_bench(argv[2])) && check_flags(argv[argc - 2]) && check_flags_bench(argv[argc - 1])) ||
+		((!check_flags(argv[2]) && !check_flags_bench(argv[1])) && check_flags(argv[argc - 1]) && check_flags_bench(argv[argc - 2])))
+		return (1);
+	else if (((check_flags(argv[1]) && check_flags_bench(argv[2])) && !check_flags(argv[argc - 1]) && !check_flags_bench(argv[argc - 2])) ||
+			((check_flags(argv[2]) && check_flags_bench(argv[1])) && !check_flags(argv[argc - 2]) && !check_flags_bench(argv[argc - 1])) ||
+			((check_flags(argv[1]) && check_flags_bench(argv[2])) && !check_flags(argv[argc - 2]) && !check_flags_bench(argv[argc - 1])) ||
+			((check_flags(argv[2]) && check_flags_bench(argv[1])) && !check_flags(argv[argc - 1]) && !check_flags_bench(argv[argc - 2])))
+		return (argc - 1);
+	else
+		return (0);
+}
+
 int	check_argv(int argc, char **argv)
 {
 	int	i;
 	int	j;
-	
+
 	if (!check_flags_position(argc, argv))
 		return (0);
 	else if (check_flags_position(argc, argv) == 1)
@@ -53,9 +76,37 @@ int	check_argv(int argc, char **argv)
 		{
 			if (!ft_isdigit(argv[j][i]) && argv[j][i] != ' ' &&  argv[j][i] != '-' && argv[j][i] != '+')
 				return (0);
-			i ++;
+			i++;
 		}
-		j ++;
+		j++;
+	}
+	return (1);
+}
+
+int	check_argv_double(int argc, char **argv)
+{
+	int	i;
+	int	j;
+
+	if (!checks_flags_position_double(argc, argv))
+		return (0);
+	else if (checks_flags_position_double(argc, argv) == 1)
+		j = 3;
+	else
+	{
+		j = 1;
+		argc = argc - 2;
+	}
+	while (j < argc)
+	{
+		i = 0;
+		while (argv[j][i] != '\0')
+		{
+			if (!ft_isdigit(argv[j][i]) && argv[j][i] != ' ' &&  argv[j][i] != '-' && argv[j][i] != '+')
+				return (0);
+			i++;
+		}
+		j++;
 	}
 	return (1);
 }
@@ -63,6 +114,13 @@ int	check_argv(int argc, char **argv)
 int	check_argv_adaptive(int position, char **argv)
 {
 	if (!ft_strcmp(argv[position], "--adaptive"))
+		return (1);
+	return (0);
+}
+
+int check_bench(int position, char **argv)
+{
+	if (!ft_strcmp(argv[position], "--bench"))
 		return (1);
 	return (0);
 }
@@ -75,6 +133,7 @@ int	use_fonction(t_stack **a, t_stack **b, int *op_operation, char **argv)
 
 	i = 1;
 	check = 0;
+	count = 0;
 	while (argv[i])
 	{
 		if (!ft_strcmp(argv[i], "--simple"))
@@ -133,10 +192,80 @@ t_stack	*list_arg_fillers(int argc, char **argv)
 	}
 	if (check_flags_position(argc, argv) == 1)
 		i = 2;
+	//else if (checks_flags_position_double(argc, argv) == 1)
+	//	i = 3;
 	else if (check_flags_position(argc, argv) > 1)
 	{
 		i = 1;
 		argc = argc - 1;
+	}
+	if (ft_strchr((argv[i]), ' '))
+	{
+		tab = ft_split(argv[i], ' ');
+		head = ft_lstnew(ft_atoi(tab[0]));
+		current = head;
+		j = 1;
+		while (tab[j])
+		{
+			new_node = ft_lstnew(ft_atoi(tab[j]));
+			current->next = new_node;
+			current = new_node;
+			j ++;
+		}
+	}
+	else
+	{
+		head = ft_lstnew(ft_atoi(argv[i]));
+		current = head;
+	}
+	i ++;
+	while (i < argc)
+	{
+		if (ft_strchr((argv[i]), ' '))
+		{
+			tab = ft_split(argv[i], ' ');
+			j = 0;
+			while (tab[j])
+			{
+				new_node = ft_lstnew(ft_atoi(tab[j]));
+				current->next = new_node;
+				current = new_node;
+				j ++;
+			}
+		}
+		else
+		{
+			new_node = ft_lstnew(ft_atoi(argv[i]));
+			current->next = new_node;
+			current = new_node;
+		}
+		i++;
+	}
+	return head;
+}
+
+
+t_stack	*list_arg_fillers_double(int argc, char **argv)
+{
+	t_stack *head;
+	t_stack	*current;
+	t_stack	*new_node;
+	int		i;
+	int		j;
+	char	**tab;
+
+	if (argc <= 1 || !check_argv_double(argc, argv))
+	{
+		ft_printf(2, "error\n");
+		exit(1);
+		return NULL;
+	}
+	if (checks_flags_position_double(argc, argv) == 1)
+		i = 3;
+	else if (checks_flags_position_double(argc, argv) > 1)
+	{
+		i = 1;
+		argc = argc - 2;
 	}
 	if (ft_strchr((argv[i]), ' '))
 	{

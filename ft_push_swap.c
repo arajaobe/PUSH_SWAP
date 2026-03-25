@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_push_swap.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: samrazaf <samrazaf@student.42antananari    +#+  +:+       +#+        */
+/*   By: arajaobe <arajaobe@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/16 13:37:45 by arajaobe          #+#    #+#             */
-/*   Updated: 2026/03/22 16:27:58 by samrazaf         ###   ########.fr       */
+/*   Updated: 2026/03/25 14:47:07 by arajaobe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ int main(int argc, char **argv)
 	int op_counters[11];
 
 	b = NULL;
+	x = 0;
 	ft_memset(op_counters, 0, sizeof(op_counters));
 
 	/*int *tab;
@@ -110,7 +111,8 @@ int main(int argc, char **argv)
 );*/
 
 
-	a = list_arg_fillers(argc, argv);
+	//a = list_arg_fillers(argc, argv);
+	a = list_arg_fillers_double(argc, argv);
 	//a = list_fillers(11, 4, 2, 1, 5, 3, 26, 9, 7, 8, 10, 11);
 	//a = list_fillers(5, 5, 2, 4, 1, 3);
 	//a = list_fillers(5, 3, 5, 0, -6, 9);
@@ -130,11 +132,15 @@ int main(int argc, char **argv)
 		exit(1);
 	}
 
+
+
 	if (check_argv_adaptive(check_flags_position(argc, argv), argv))
 		x = use_adaptive_fonction(&a, &b , op_counters, disorder);
 	else
 		x = use_fonction(&a, &b, op_counters, argv);
 
+	if (check_bench(1, argv) || check_bench(2, argv)|| check_bench(argc - 1, argv) || check_bench(argc - 2, argv))
+		print_bench(op_counters, disorder, x);
 
 	//int p;
 	//p = check_argv(argc, argv);
@@ -148,9 +154,9 @@ int main(int argc, char **argv)
 
 	print_stacks(a,b);
 	//print_index(a);
-	//printf("number of operations: %d\n", x);
-	print_bench(op_counters, disorder, x);
-	printf("disorder: %.2f\n", disorder);
+	printf("number of operations: %d\n", x);
+	//print_bench(op_counters, disorder, x);
+	//printf("disorder: %.2f\n", disorder);
 	//res = op_counters[OP_SB];
 	//printf("PB: %d", res);
 	//push('b');

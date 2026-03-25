@@ -6,7 +6,7 @@
 /*   By: arajaobe <arajaobe@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/09 12:58:21 by arajaobe          #+#    #+#             */
-/*   Updated: 2026/03/20 18:31:30 by arajaobe         ###   ########.fr       */
+/*   Updated: 2026/03/25 09:45:45 by arajaobe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -315,10 +315,10 @@ int	ft_atoi(const char *nptr)
 double	disorder_metrics(t_stack *head)
 {
 	int	mistakes;
-	int total_pair;
+	int	total_pair;
 	int	i;
 	int	j;
-	int len;
+	int	len;
 
 	mistakes = 0;
 	total_pair = 0;
@@ -423,8 +423,8 @@ int find_min (t_stack **head, int len)
 
 int	intchr(int to_find, int *range, size_t size)
 {
-	int res;
-	int i;
+	int		res;
+	size_t	i;
 
 	res = 0;
 	i = 0;
@@ -490,32 +490,31 @@ void	*ft_memset(void *s, int c, size_t n)
 		strats = "O(n log n)";
 	if (strategy == "--simple")
 		printf("[bench] strategy:  Simple / O(n²)\n");
-	else if (strategy == "--medium")
+	else if (strategy == "--medium")double
 		printf("[bench] strategy:  Medium / O(n√n)\n");
-	else if (strategy == "--complex")
+	else if (strategy == "--complex")double
 		printf("[bench] strategy:  Complex / O(n log n)\n");
 	else  if (strategy == "--adaptive" || strategy =="")
 		printf("[bench] strategy:   Adaptive / %s\n", strats);
 }*/
 void	hundred(double disorder)
 {
-	int before_point;
-	int res;
-	int res2;
-	double decimal_point;
+	double	before_point;
+	int		res;
+	double	decimal_point;
 
-	before_point = disorder;
+	//before_point = disorder;
 	decimal_point = disorder * 100;
 	res = decimal_point;
 	before_point = decimal_point * 100 - (res * 100);
-	res2 = before_point;
-	if (res2 == 0)
+	res = before_point;
+	if (res == 0)
 		{
 			ft_printf(2, "%f", decimal_point);
-			ft_printf(2, "0\n");
+			ft_printf(2, "0%%\n");
 		}
 	else
-		ft_printf(2, "%f\n", decimal_point);
+		ft_printf(2, "%f%%\n", decimal_point);
 
 }
 
@@ -540,8 +539,6 @@ void 	print_bench(int *op_counters, double disorder_metrics, int total_ops)
 		op_counters[OP_RRB],
 		op_counters[OP_RRR]);
 }
-
-
 int	duplicate(t_stack **a)
 {
 	int i;
@@ -571,6 +568,7 @@ int	duplicate(t_stack **a)
 	return (check);
 }
 
+
 void	ft_lstclear(t_stack **lst)
 {
 	t_stack	*temp;
@@ -584,7 +582,6 @@ void	ft_lstclear(t_stack **lst)
 		*lst = temp;
 	}
 }
-
 //chunks 3
 //chunks 3 -1 = 2
 // start :3   | end : 5

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_push_swap.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: samrazaf <samrazaf@student.42antananari    +#+  +:+       +#+        */
+/*   By: arajaobe <arajaobe@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/09 12:58:04 by arajaobe          #+#    #+#             */
-/*   Updated: 2026/03/22 16:18:27 by samrazaf         ###   ########.fr       */
+/*   Updated: 2026/03/25 14:43:11 by arajaobe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,7 @@ int		ft_strcmp(const char *s1, const char *s2);
 int		ft_isdigit(int c);
 int		check_flags(char *str);
 int		check_flags_position(int argc, char **argv);
+int 	checks_flags_position_double(int argc, char **argv);
 int		check_argv(int argc, char **argv);
 int		medium_sort(t_stack **a, t_stack **b, int *op_counters);
 int		use_fonction(t_stack **a, t_stack **b, int *op_operation, char **argv);
@@ -104,5 +105,10 @@ int		use_adaptive_fonction(t_stack **a, t_stack **b, int *op_operation, double d
 int		check_argv_adaptive(int position, char **argv);
 int		duplicate(t_stack **a);
 void	ft_lstclear(t_stack **lst);
+int		check_bench(int position, char **argv);
+int		check_flags_bench(char *str);
+int 	checks_flags_position_double(int argc, char **argv);
+int		check_argv_double(int argc, char **argv);
+t_stack	*list_arg_fillers_double(int argc, char **argv);
 
 #endif
