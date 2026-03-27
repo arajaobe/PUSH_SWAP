@@ -13,17 +13,19 @@
 
 #include "ft_push_swap.h"
 
+
+
+
 int	medium_core(t_stack **a, t_stack **b, int *array, int *op_counters)
 {
 	static int	i;
 	int 		count;
 	int 		len;
 	int			*temp;
-	int			chunk;
+	size_t		chunk;
 
 	len = count_nodes(*a);
 	chunk = int_sqrt(len);
-	i = 0;
 	count = 0;
 	while (i < len)
 	{
@@ -59,41 +61,22 @@ int	medium_sort(t_stack **a, t_stack **b, int *op_counters)
 	return count;
 }
 
-/*int	simple_sort(t_stack **a, t_stack **b)
+int adaptive_sort(t_stack **a, t_stack **b, int *op_operation, double disorder)
 {
-	int count;
-	int	i;
-	int	len;
+	int		count;
 
 	count = 0;
-	len = count_nodes(*a);
-	while (*a)
+	if (disorder < 0.2)
 	{
-		i = search_content(a, find_min(a, len));
-
-		if (i > (len / 2) + 1)
-		{
-			while (i != len + 1)
-			{
-				count += rra(a);
-				i++;
-			}
-		}
-		else
-		{
-			while (i != 1)
-			{
-				count += ra(a);
-				i--;
-			}
-		}
-		count += pb(a, b);
-		len = count_nodes(*a);
+		count = improved_simple_sort(a, b, op_operation);
 	}
-	while (*b)
+	else if (disorder >= 0.2 && disorder < 0.5)
 	{
-		count += pa(a,b);
+		count = medium_sort(a, b, op_operation);
 	}
-
+	else
+	{
+		count = complex_sort(a, b, op_operation);
+	}
 	return (count);
-}*/
+}

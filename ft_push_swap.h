@@ -26,7 +26,7 @@ typedef struct s_stack
 	struct s_stack	*next;
 }	t_stack;
 
-typedef enum
+typedef enum e_op
 {
 	OP_SA,
 	OP_SB,
@@ -39,7 +39,22 @@ typedef enum
 	OP_RRA,
 	OP_RRB,
 	OP_RRR
-}e_op;
+}t_op;
+
+typedef enum e_strategy
+{
+	STRAT_ADAPTIVE,
+	STRAT_SIMPLE,
+	STRAT_MEDIUM,
+	STRAT_COMPLEX
+}t_strategy;
+
+typedef struct	s_parse_result
+{
+	t_stack *stack_a;
+	int		bench_mode;
+	t_strategy strategy;
+}t_parse_result;
 
 void	print_num(t_stack *a, t_stack *b);
 void	print_stacks(t_stack *a, t_stack *b);
@@ -67,6 +82,7 @@ void	insertsort(int	*tab, int size);
 int		search_content(t_stack **head, int find);
 void	fill_index(t_stack **head, int	*array);
 int		ft_atoi(const char *nptr);
+long 	ft_atol(const char *str);
 void	*ft_memset(void *s, int c, size_t n);
 void	print_index(t_stack *head);
 void	array_sort(t_stack **a, int *array);
@@ -84,8 +100,8 @@ int		medium_core(t_stack **a, t_stack **b, int *array, int *op_counters);
 int		medium_sort(t_stack **a, t_stack **b, int *op_counters);
 int		simple_sort(t_stack **a, t_stack **b, int *op_counters);
 int		improved_simple_sort(t_stack **a, t_stack **b, int *op_counters);
-void	strategies(float disorder, char *strategy);
-void 	print_bench(int *op_counters, double disorder_metrics, int total_ops);
+void	strategy_bench(t_strategy strat_bench, double disorder);
+void 	print_bench( t_strategy strat, int *op_counters, double disorder_metrics, int total_ops);
 int		complex_sort(t_stack **a, t_stack **b, int *op_counters);
 void	rotate_index(t_stack	**head);
 int		find_index(t_stack *head, int pos);
@@ -101,7 +117,6 @@ int 	checks_flags_position_double(int argc, char **argv);
 int		check_argv(int argc, char **argv);
 int		medium_sort(t_stack **a, t_stack **b, int *op_counters);
 int		use_fonction(t_stack **a, t_stack **b, int *op_operation, char **argv);
-int		use_adaptive_fonction(t_stack **a, t_stack **b, int *op_operation, double disorder);
 int		check_argv_adaptive(int position, char **argv);
 int		duplicate(t_stack **a);
 void	ft_lstclear(t_stack **lst);
@@ -110,5 +125,12 @@ int		check_flags_bench(char *str);
 int 	checks_flags_position_double(int argc, char **argv);
 int		check_argv_double(int argc, char **argv);
 t_stack	*list_arg_fillers_double(int argc, char **argv);
+t_parse_result	list_arg_fillers_new(int argc, char **argv);
+int		 run_strategy(t_strategy strat, t_stack **a, t_stack **b, int *op_counters);
+int		ft_isnumber(char *s);
+void 	ft_free_split(char **split);
+int		is_valid_digit(char *s);
+int 	adaptive_sort(t_stack **a, t_stack **b, int *op_operation, double disorder);
+
 
 #endif

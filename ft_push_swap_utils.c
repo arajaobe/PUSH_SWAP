@@ -478,7 +478,7 @@ void	*ft_memset(void *s, int c, size_t n)
 	return (s);
 }
 
-/*void	strategies(float disorder, char *strategy)
+void	strategy_bench(t_strategy strat_bench, double disorder)
 {
 	char *strats;
 
@@ -488,15 +488,15 @@ void	*ft_memset(void *s, int c, size_t n)
 		strats = "O(n√n)";
 	else
 		strats = "O(n log n)";
-	if (strategy == "--simple")
-		printf("[bench] strategy:  Simple / O(n²)\n");
-	else if (strategy == "--medium")double
-		printf("[bench] strategy:  Medium / O(n√n)\n");
-	else if (strategy == "--complex")double
-		printf("[bench] strategy:  Complex / O(n log n)\n");
-	else  if (strategy == "--adaptive" || strategy =="")
-		printf("[bench] strategy:   Adaptive / %s\n", strats);
-}*/
+	if (strat_bench == STRAT_SIMPLE)
+		ft_printf(2, "[bench] strategy:  Simple / O(n²)\n");
+	else if (strat_bench == STRAT_MEDIUM)
+		ft_printf(2, "[bench] strategy:  Medium / O(n√n)\n");
+	else if (strat_bench == STRAT_COMPLEX)
+		ft_printf(2, "[bench] strategy:  Complex / O(n log n)\n");
+	else
+		ft_printf(2, "[bench] strategy:   Adaptive / %s\n", strats);
+}
 void	hundred(double disorder)
 {
 	double	before_point;
@@ -519,11 +519,12 @@ void	hundred(double disorder)
 }
 
 
-void 	print_bench(int *op_counters, double disorder_metrics, int total_ops)
+void 	print_bench( t_strategy strat, int *op_counters, double disorder_metrics, int total_ops)
 {
+
 	ft_printf(2, "[bench] disorder:   ");
 	hundred(disorder_metrics);
-	//strategies(disorder_metrics, strate);
+	strategy_bench( strat, disorder_metrics);
 	ft_printf(2, "[bench] total_ops:  %d\n", total_ops);
 	ft_printf(2, "[bench] sa: %d  sb: %d  ss: %d  pa: %d  pb: %d\n",
 		op_counters[OP_SA],
@@ -582,10 +583,99 @@ void	ft_lstclear(t_stack **lst)
 		*lst = temp;
 	}
 }
+
+int	ft_isnumber(char *s)
+{
+	int i;
+
+	i = 0;
+	if (!s || !*s)
+		return (0);
+	if (s[i] == '-' || s[i] == '+')
+		i++;
+	if (s[i] == '-' || s[i] == '+')
+		return (0);
+	if (!ft_isdigit((unsigned char)s[i]))
+		return (0);
+	while (s[i])
+	{
+		if (!ft_isdigit((unsigned char)s[i]))
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+
+long 	ft_atol(const char *str)
+{
+	long	result;
+	int 	sign ;
+	result = 0;
+	sign = 1;
+    while (*str == ' ' || (*str >= '\t' && *str <= '\r'))
+		str++;
+	if (*str == '-' || *str == '+')
+	{
+		if (*str == '-')
+			sign = -1;
+		str++;
+	}
+	while (*str >= '0' && *str <= '9')
+	{
+		result = result * 10 + (*str - '0');
+		str++;
+	}
+ 	return (result * sign);
+}
+
+/*int	is_valid_digit(char *s)
+{
+    int i = 0;
+    long val;
+
+
+    if (!s || !*s)
+        return 0;
+
+    if (s[i] == '+' || s[i] == '-')
+        i++;
+
+    if (!s[i])
+        return 0;
+
+
+    while (s[i])
+    {
+        if (s[i] < '0' || s[i] > '9')
+            return 0;
+        i++;
+    }
+
+
+    val = ft_atol(s);
+    if (val < -2147483648 || val > 2147483647)
+        return 0;
+
+    return 1;
+}*/
+
+int	is_valid_digit(char *s)
+{
+	long	val;
+
+	val = ft_atol(s);
+	if (val < -2147483648 || val > 2147483647)
+		return 0;
+	return (1);
+}
+
+
+
 //chunks 3
 //chunks 3 -1 = 2
 // start :3   | end : 5
-// 21  13 9 7 6 8 12
+// 21  13 9 7	 6 8 12
 //tab : 0 1 4 5 6 7 8 9 12 13 21 82
 
 // 4

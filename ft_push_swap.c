@@ -60,10 +60,11 @@
 
 int main(int argc, char **argv)
 {
-	t_stack *a;
+	//t_stack *a;
 	t_stack	*b;
+	t_parse_result a;
 	int 	x;
-	float 	disorder;
+	double 	disorder;
 	int op_counters[11];
 
 	b = NULL;
@@ -111,12 +112,13 @@ int main(int argc, char **argv)
 );*/
 
 
+	a = list_arg_fillers_new(argc, argv);
 	//a = list_arg_fillers(argc, argv);
-	a = list_arg_fillers_double(argc, argv);
+	//a = list_arg_fillers_double(argc, argv);
 	//a = list_fillers(11, 4, 2, 1, 5, 3, 26, 9, 7, 8, 10, 11);
 	//a = list_fillers(5, 5, 2, 4, 1, 3);
 	//a = list_fillers(5, 3, 5, 0, -6, 9);
-	disorder = disorder_metrics(a);
+	disorder = disorder_metrics(a.stack_a);
 
 
 	//print_stacks(a,b);
@@ -125,22 +127,28 @@ int main(int argc, char **argv)
 	//print_index(a);
 
 	//print_stacks(a,b);
-	if (duplicate(&a))
+
+	if (duplicate(&a.stack_a))
 	{
-		ft_lstclear(&a);
+		ft_lstclear(&a.stack_a);
 		ft_printf(2, "error");
 		exit(1);
 	}
 
+	x = run_strategy(a.strategy, &a.stack_a, &b, op_counters);
+
+	if (a.bench_mode)
+		print_bench(a.strategy, op_counters, disorder, x);
 
 
-	if (check_argv_adaptive(check_flags_position(argc, argv), argv))
+
+	/*if (check_argv_adaptive(check_flags_position(argc, argv), argv))
 		x = use_adaptive_fonction(&a, &b , op_counters, disorder);
 	else
 		x = use_fonction(&a, &b, op_counters, argv);
 
 	if (check_bench(1, argv) || check_bench(2, argv)|| check_bench(argc - 1, argv) || check_bench(argc - 2, argv))
-		print_bench(op_counters, disorder, x);
+		print_bench(op_counters, disorder, x);*/
 
 	//int p;
 	//p = check_argv(argc, argv);
@@ -152,9 +160,9 @@ int main(int argc, char **argv)
 	//x = complex_sort(&a, &b, op_counters);
 	//print_index(a);
 
-	print_stacks(a,b);
+	//print_stacks(a.stack_a, b);
 	//print_index(a);
-	printf("number of operations: %d\n", x);
+	//printf("number of operations: %d\n", x);
 	//print_bench(op_counters, disorder, x);
 	//printf("disorder: %.2f\n", disorder);
 	//res = op_counters[OP_SB];

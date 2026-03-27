@@ -1,5 +1,6 @@
 
 #include <stdio.h>
+#include <limits.h>
 
 /*int	ft_putnbr_point(int fd, double n)
 {
@@ -38,3 +39,50 @@ int main()
 	return (0);
 
 }*/
+
+
+/*int	duplicate(int *array, int size)
+{
+	int i;
+	int j;
+	int check;
+	int pos;
+
+	check = 0;
+	i = 0;
+	while (i < size)
+	{
+		pos = array[i];
+		j = i + 1;
+		while (j < size)
+		{
+			if (pos == array[j])
+			{
+				check = 1;
+				return (check);
+			}
+			j++;
+		}
+		i++;
+	}
+	return (check);
+}*/
+
+
+
+//int main()
+//{
+//	int tab[] = {2, 3, 6, 1, 6};
+//	int res;
+
+
+//	//res = duplicate(tab, 5);
+//	//if (res)
+//	//	printf("there is a duplicate");
+//	//else
+//	//	printf("there is no duplicate");
+//	printf("min: %d\n" ,  INT_MIN);
+//	printf("max: %d\n" ,  INT_MAX);
+//	return 0;
+
+//}
