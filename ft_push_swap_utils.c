@@ -669,7 +669,19 @@ int	is_valid_digit(char *s)
 		return 0;
 	return (1);
 }
+void ft_free_split(char **split)
+{
+	int i = 0;
 
+	if (!split)
+		return ;
+	while (split[i])
+	{
+		free(split[i]);
+		i++;
+	}
+	free(split);
+}
 
 
 //chunks 3
