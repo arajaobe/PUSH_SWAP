@@ -80,3 +80,42 @@ int adaptive_sort(t_stack **a, t_stack **b, int *op_operation, double disorder)
 	}
 	return (count);
 }
+
+int	simple_sort(t_stack **a, t_stack **b, int *op_counters)
+{
+	int count;
+	int	i;
+	int	len;
+
+	count = 0;
+	len = count_nodes(*a);
+	while (*a)
+	{
+		i = search_content(a, find_min(a, len));
+
+		if (i > (len / 2) + 1)
+		{
+			while (i != len + 1)
+			{
+				count += rra(a, op_counters);
+				i++;
+			}
+		}
+		else
+		{
+			while (i != 1)
+			{
+				count += ra(a, op_counters);
+				i--;
+			}
+		}
+		count += pb(a, b, op_counters);
+		len = count_nodes(*a);
+	}
+	while (*b)
+	{
+		count += pa(a,b, op_counters);
+	}
+
+	return (count);
+}

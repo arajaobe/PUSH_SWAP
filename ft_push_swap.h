@@ -115,7 +115,6 @@ int		check_flags(char *str);
 int		check_flags_position(int argc, char **argv);
 int 	checks_flags_position_double(int argc, char **argv);
 int		check_argv(int argc, char **argv);
-int		medium_sort(t_stack **a, t_stack **b, int *op_counters);
 int		use_fonction(t_stack **a, t_stack **b, int *op_operation, char **argv);
 int		check_argv_adaptive(int position, char **argv);
 int		duplicate(t_stack **a);
