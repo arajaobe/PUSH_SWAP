@@ -13,22 +13,14 @@
 
 #include "ft_push_swap.h"
 
-int bit_count(int max_index)
-{
-	int bits = 0;
-
-	while ((max_index >> bits) != 0)
-		bits++;
-	return (bits);
-}
-static int complexe_core(t_stack **a, t_stack **b, int *array, int bits, int *op_counters)
+static int complexe_core(t_parse_result *stack, int bits, int *op_counters)
 {
 	int i;
 	int j;
 	int count;
 	int len;
 
-	len  = count_nodes(*a);
+	len  = count_nodes(stack->stack_a);
 	count = 0;
 	i = 0;
 	while (i < bits)
@@ -36,21 +28,21 @@ static int complexe_core(t_stack **a, t_stack **b, int *array, int bits, int *op
 		j = 0;
 		while (j < len)
 		{
-			if ((((*a)->index >> i) & 1) == 0)
-				count += pb(a, b, op_counters);
+			if (((stack->stack_a->index >> i) & 1) == 0)
+				count += pb(&stack->stack_a, &stack->stack_b, op_counters);
 			else
-				count += ra(a, op_counters);
+				count += ra(&stack->stack_a, op_counters);
 			j++;
 		}
-		while (*b)
-			count += pa(a, b, op_counters);
+		while (stack->stack_b)
+			count += pa(&stack->stack_a, &stack->stack_b, op_counters);
 		i++;
 	}
 	return (count);
 }
 
 
-int	complex_sort(t_stack **a, t_stack **b, int *op_counters)
+int	complex_sort(t_parse_result *stack, int *op_counters)
 {
 	int	len;
 	int	*array;
@@ -58,17 +50,17 @@ int	complex_sort(t_stack **a, t_stack **b, int *op_counters)
 	int	bits;
 
 	count = 0;
-	len = count_nodes(*a);
-	if (len <= 10)
+	len = count_nodes(stack->stack_a);
+	if (check_len_sort(stack, len) == 1)
 	{
-		count += improved_simple_sort(a, b, op_counters);
+		count = handle_len_sort(stack, op_counters, len);
 		return (count);
 	}
 	array = malloc(sizeof(int) * len);
-	array_sort(a, array);
-	fill_index(a, array);
-	bits = bit_count(find_max_bits(a, len));
-	count += complexe_core(a, b, array, bits, op_counters);
+	array_sort(&stack->stack_a, array);
+	fill_index(&stack->stack_a, array);
+	bits = bit_count(find_max_bits(&stack->stack_a, len));
+	count += complexe_core(stack, bits, op_counters);
 	free(array);
 	return count;
 }

@@ -13,8 +13,55 @@
 
 #include "ft_push_swap.h"
 
+static int	medium_core(t_parse_result *stack, int *array, int *op_counters);
+static int	calculate_medium(t_parse_result *stack, int index, int len, int *op_counters);
+static int	rotate_medium(t_parse_result *stack, int *array, int size, int *op_counters);
+static int	temporary_medium(int *array, int size, int index, int *temp);
 
-int	calculate_medium(t_stack **a, int index, int len, int *op_counters)
+int	medium_sort(t_parse_result *stack, int *op_counters)
+{
+	int	len;
+	int	*array;
+	int count;
+
+	count = 0;
+	len = count_nodes(stack->stack_a);
+	if (check_len_sort(stack, len) == 1)
+	{
+		count = handle_len_sort(stack, op_counters, len);
+		return (count);
+	}
+	array = malloc(sizeof(int) * len);
+	array_sort(&stack->stack_a, array);
+	count += medium_core(stack, array, op_counters);
+	count += push_findmax(stack, op_counters);
+	free(array);
+	return count;
+}
+static int	medium_core(t_parse_result *stack, int *array, int *op_counters)
+{
+	static int	i;
+	int 		count;
+	int 		len;
+	int			*temp;
+	int			chunk;
+
+	len = count_nodes(stack->stack_a);
+	chunk = int_sqrt(len);
+	count = 0;
+	while (i < len)
+	{
+		if (i + chunk > len)
+			chunk = len - i;
+		temp = malloc(sizeof(int) * chunk);
+		i = temporary_medium(array, chunk, i, temp);
+		count += rotate_medium(stack, temp, chunk, op_counters);
+		free(temp);
+		temp = NULL;
+	}
+	return (count);
+}
+static int	calculate_medium(t_parse_result *stack, int index, int len, int *op_counters)
 {
 	int count;
 	int pos;
@@ -25,7 +72,7 @@ int	calculate_medium(t_stack **a, int index, int len, int *op_counters)
 	{
 		while (pos != len + 1)
 		{
-			count += rra(a, op_counters);
+			count += rra(&stack->stack_a, op_counters);
 			pos++;
 		}
 	}
@@ -33,84 +80,37 @@ int	calculate_medium(t_stack **a, int index, int len, int *op_counters)
 	{
 		while (pos != 1)
 		{
-			count += ra(a, op_counters);
+			count += ra(&stack->stack_a, op_counters);
 			pos--;
 		}
 	}
 	return (count);
 }
 
-int	rotate_medium(t_stack **a, t_stack **b, int *array, size_t size, int *op_counters)
+static int	rotate_medium(t_parse_result *stack, int *array, int size, int *op_counters)
 {
 	int	i;
 	int	len;
-	int pos;
 	int count;
 
-	len = count_nodes(*a);
-	size = sizeof(array);
+	len = count_nodes(stack->stack_a);
 	count = 0;
 	i = 1;
 	while (i <= len)
 	{
-		pos = i;
-		if (intchr(find_content(*a, i), array, size))
+		if (intchr(find_content(stack->stack_a, i), array, size))
 		{
-			count += calculate_medium(a, i, len, op_counters);
-			count += pb(a, b, op_counters);
+			count += calculate_medium(stack, i, len, op_counters);
+			count += pb(&stack->stack_a, &stack->stack_b, op_counters);
 			i = 0;
 		}
-		len = count_nodes(*a);
+		len = count_nodes(stack->stack_a);
 		i++;
 	}
 	return (count);
 }
 
-
-int	push_findmax_calculate(t_stack **b, int index, int len, int *op_counters)
-{
-	int count;
-
-	count  = 0;
-	if (index > (len / 2) + 1)
-	{
-		while (index != len + 1)
-		{
-			count += rrb(b, op_counters);
-			index++;
-		}
-	}
-	else
-	{
-		while (index != 1)
-		{
-			count += rb(b, op_counters);
-			index--;
-		}
-	}
-	return (count);
-}
-
-int	push_findmax(t_stack **a, t_stack **b, int *op_counters)
-{
-	int len;
-	int	count;
-	int i;
-
-	count = 0;
-	len = count_nodes(*b);
-	while (*b)
-	{
-		i = search_content(b,  find_max(b, len));
-		count += push_findmax_calculate(b, i, len, op_counters);
-		count += pa(a,b, op_counters);
-		len = count_nodes(*b);
-	}
-	return (count);
-}
-
-
-int	temporary_medium(int *array, int size, int index, int *temp)
+static int	temporary_medium(int *array, int size, int index, int *temp)
 {
 	int j;
 
