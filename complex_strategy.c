@@ -3,24 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   complex_strategy.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arajaobe <arajaobe@student.42antananari    +#+  +:+       +#+        */
+/*   By: samrazaf <samrazaf@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/19 13:33:20 by arajaobe          #+#    #+#             */
-/*   Updated: 2026/03/19 14:45:33 by arajaobe         ###   ########.fr       */
+/*   Updated: 2026/04/01 17:09:27 by samrazaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "ft_push_swap.h"
 
-static int complexe_core(t_parse_result *stack, int bits, int *op_counters)
+static int	complexe_core(t_parse_result *stack, int bits, int *op_counters)
 {
-	int i;
-	int j;
-	int count;
-	int len;
+	int	i;
+	int	j;
+	int	count;
+	int	len;
 
-	len  = count_nodes(stack->stack_a);
+	len = count_nodes(stack->stack_a);
 	count = 0;
 	i = 0;
 	while (i < bits)
@@ -41,12 +40,11 @@ static int complexe_core(t_parse_result *stack, int bits, int *op_counters)
 	return (count);
 }
 
-
 int	complex_sort(t_parse_result *stack, int *op_counters)
 {
 	int	len;
 	int	*array;
-	int count;
+	int	count;
 	int	bits;
 
 	count = 0;
@@ -62,5 +60,5 @@ int	complex_sort(t_parse_result *stack, int *op_counters)
 	bits = bit_count(find_max_bits(&stack->stack_a, len));
 	count += complexe_core(stack, bits, op_counters);
 	free(array);
-	return count;
+	return (count);
 }

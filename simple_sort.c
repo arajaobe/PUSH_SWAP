@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tri_three_func.c                                   :+:      :+:    :+:   */
+/*   simple_sort.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: samrazaf <samrazaf@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/31 18:22:09 by samrazaf          #+#    #+#             */
-/*   Updated: 2026/03/31 18:38:42 by samrazaf         ###   ########.fr       */
+/*   Updated: 2026/04/01 17:55:54 by samrazaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ static int	mini_func(t_stack *x);
 
 int	short_sort(t_parse_result *ptr, int *op_counters)
 {
-	int count;
+	int	count;
 	int	len;
-	int stack_len;
+	int	stack_len;
 
 	count = 0;
 	len = count_nodes(ptr->stack_a);
@@ -36,6 +36,7 @@ int	short_sort(t_parse_result *ptr, int *op_counters)
 		count += pa(&ptr->stack_a, &ptr->stack_b, op_counters);
 	return (count);
 }
+
 int	mini_sort(t_parse_result *a, int *op_counters)
 {
 	t_stack	*x;
@@ -66,9 +67,9 @@ int	mini_sort(t_parse_result *a, int *op_counters)
 
 int	tiny_sort(t_parse_result *stack, int *op_counters)
 {
-	int first;
-	int second;
-	int count;
+	int	first;
+	int	second;
+	int	count;
 
 	count = 0;
 	first = (stack->stack_a)->content;
@@ -104,11 +105,10 @@ static int	mini_func(t_stack *x)
 		return (0);
 }
 
-
 static	int	short_op(t_parse_result *ptr, int *op_counters, int len)
 {
-	int i;
-	int count;
+	int	i;
+	int	count;
 
 	count = 0;
 	i = search_content(&ptr->stack_a, find_min(&ptr->stack_a, len));
@@ -130,5 +130,3 @@ static	int	short_op(t_parse_result *ptr, int *op_counters, int len)
 	}
 	return (count);
 }
-
-

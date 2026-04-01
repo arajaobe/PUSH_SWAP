@@ -1,10 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_operations_reverse_r.c                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: samrazaf <samrazaf@student.42antananari    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/04/01 17:00:51 by samrazaf          #+#    #+#             */
+/*   Updated: 2026/04/01 17:11:09 by samrazaf         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "ft_push_swap.h"
 
 static int	reverse_rotate(t_stack	**head)
 {
-	int	current;
-	int previous;
+	int		current;
+	int		previous;
 	t_stack	*p;
 
 	if (!*head)
@@ -22,10 +33,9 @@ static int	reverse_rotate(t_stack	**head)
 	return (1);
 }
 
-
 int	rra(t_stack **a, int *op_counters)
 {
-	int x;
+	int	x;
 
 	x = reverse_rotate(a);
 	ft_printf(1, "rra\n");
@@ -36,6 +46,7 @@ int	rra(t_stack **a, int *op_counters)
 int	rrb(t_stack **b, int *op_counters)
 {
 	int	x;
+
 	x = reverse_rotate(b);
 	ft_printf(1, "rrb\n");
 	op_counters[OP_RRB]++;

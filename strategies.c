@@ -3,18 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   strategies.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arajaobe <arajaobe@student.42antananari    +#+  +:+       +#+        */
+/*   By: samrazaf <samrazaf@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/16 13:38:01 by arajaobe          #+#    #+#             */
-/*   Updated: 2026/04/01 14:32:34 by arajaobe         ###   ########.fr       */
+/*   Updated: 2026/04/01 18:01:17 by samrazaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "ft_push_swap.h"
 
-
-int adaptive_sort(t_parse_result *stack, int *op_operation, double disorder)
+int	adaptive_sort(t_parse_result *stack, int *op_operation, double disorder)
 {
 	int		count;
 
@@ -34,17 +32,17 @@ int adaptive_sort(t_parse_result *stack, int *op_operation, double disorder)
 	return (count);
 }
 
-int run_strategy(t_strategy strat, t_parse_result *stack, int *op_counters)
+int	run_strategy(t_strategy strat, t_parse_result *stack, int *op_counters)
 {
-	double 	disorder;
-	int 	count;
+	double	disorder;
+	int		count;
 
 	count = 0;
 	disorder = disorder_metrics(stack->stack_a);
 	if (strat == STRAT_SIMPLE)
-		count =  improved_simple_sort(stack, op_counters);
+		count = improved_simple_sort(stack, op_counters);
 	else if (strat == STRAT_MEDIUM)
-		count =  medium_sort(stack, op_counters);
+		count = medium_sort(stack, op_counters);
 	else if (strat == STRAT_COMPLEX)
 		count = complex_sort(stack, op_counters);
 	else

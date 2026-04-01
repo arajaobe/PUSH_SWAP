@@ -1,19 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_parsing.c                                       :+:      :+:    :+:   */
+/*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arajaobe <arajaobe@student.42antananari    +#+  +:+       +#+        */
+/*   By: samrazaf <samrazaf@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/22 16:52:51 by samrazaf          #+#    #+#             */
-/*   Updated: 2026/03/25 14:41:14 by arajaobe         ###   ########.fr       */
+/*   Updated: 2026/04/01 17:48:17 by samrazaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_push_swap.h"
 
-
-static	int	count_words(const char *str, char c)
+static int	count_words(const char *str, char c)
 {
 	int		i;
 	int		words;
@@ -29,7 +28,7 @@ static	int	count_words(const char *str, char c)
 	return (words);
 }
 
-static	char	**free_tab(char **tab, int j)
+static char	**free_tab(char **tab, int j)
 {
 	while (j >= 0)
 	{
@@ -40,7 +39,7 @@ static	char	**free_tab(char **tab, int j)
 	return (NULL);
 }
 
-static	int	word_len(const char *str, char c)
+static int	word_len(const char *str, char c)
 {
 	int	len;
 
@@ -52,11 +51,11 @@ static	int	word_len(const char *str, char c)
 	return (len);
 }
 
-static	char	**sub_split(char **tab, char const *s, char c)
+static char	**sub_split(char **tab, char const *s, char c)
 {
-	int		i;
-	int		len;
-	int		j;
+	int	i;
+	int	len;
+	int	j;
 
 	i = 0;
 	j = 0;
@@ -81,7 +80,7 @@ static	char	**sub_split(char **tab, char const *s, char c)
 	return (tab);
 }
 
-char	**ft_split(char	const *s, char c)
+char	**ft_split(char const *s, char c)
 {
 	char	**tab;
 	size_t	word;

@@ -1,10 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_operations_rotate.c                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: samrazaf <samrazaf@student.42antananari    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/04/01 17:00:59 by samrazaf          #+#    #+#             */
+/*   Updated: 2026/04/01 17:12:07 by samrazaf         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "ft_push_swap.h"
 
 static int	rotate(t_stack	**head)
 {
-	int	current;
-	int after;
+	int		current;
+	int		after;
 	t_stack	*p;
 
 	if (!*head)
@@ -23,8 +34,8 @@ static int	rotate(t_stack	**head)
 
 static void	rotate_index(t_stack	**head)
 {
-	int	current;
-	int after;
+	int		current;
+	int		after;
 	t_stack	*p;
 
 	if (!*head)
@@ -39,7 +50,6 @@ static void	rotate_index(t_stack	**head)
 	}
 	p->index = current;
 }
-
 
 int	ra(t_stack **a, int *op_counters)
 {

@@ -3,17 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_push_swap_utils.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arajaobe <arajaobe@student.42antananari    +#+  +:+       +#+        */
+/*   By: samrazaf <samrazaf@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/09 12:58:21 by arajaobe          #+#    #+#             */
-/*   Updated: 2026/03/25 09:45:45 by arajaobe         ###   ########.fr       */
+/*   Updated: 2026/04/01 17:38:47 by samrazaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "ft_push_swap.h"
 
-t_stack	*ft_lstnew(int	content)
+t_stack	*ft_lstnew(int content)
 {
 	t_stack	*head;
 
@@ -28,12 +27,12 @@ t_stack	*ft_lstnew(int	content)
 
 int	count_nodes(t_stack *head)
 {
-	int	count;
-	t_stack *ptr;
+	int		count;
+	t_stack	*ptr;
 
 	count = 0;
 	if (head == NULL)
-		return 0;
+		return (0);
 	ptr = head;
 	while (ptr)
 	{
@@ -47,46 +46,46 @@ int	count_nodes(t_stack *head)
 
 int	find_content(t_stack *head, int pos)
 {
-	int i;
-	int	res;
-	t_stack *p;
+	int		i;
+	int		res;
+	t_stack	*p;
 
 	p = head;
 	i = 1;
 	if (pos == 0)
-		return 0;
+		return (0);
 	while (i <= pos)
 	{
 		res = p->content;
 		p = p->next;
 		i++;
 	}
-	return res;
+	return (res);
 }
 
 int	find_index(t_stack *head, int pos)
 {
-	int i;
-	int	res;
-	t_stack *p;
+	int		i;
+	int		res;
+	t_stack	*p;
 
 	p = head;
 	i = 1;
 	if (pos == 0)
-		return 0;
+		return (0);
 	while (i <= pos)
 	{
 		res = p->index;
 		p = p->next;
 		i++;
 	}
-	return res;
+	return (res);
 }
 
-int search_content(t_stack **head, int find)
+int	search_content(t_stack **head, int find)
 {
-	int i;
-	int len;
+	int	i;
+	int	len;
 
 	len = count_nodes(*head);
 	i = 1;

@@ -3,20 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   simple_strategy.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arajaobe <arajaobe@student.42antananari    +#+  +:+       +#+        */
+/*   By: samrazaf <samrazaf@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/16 13:37:58 by arajaobe          #+#    #+#             */
-/*   Updated: 2026/04/01 14:43:54 by arajaobe         ###   ########.fr       */
+/*   Updated: 2026/04/01 17:59:35 by samrazaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "ft_push_swap.h"
 
 static int	calculate_minmax(t_parse_result *stack, int len, int *op_counters);
 static int	use_min(t_parse_result *stack, int len, int *op_counters);
 static int	use_max(t_parse_result *stack, int len, int *op_counters);
-
 
 int	improved_simple_sort(t_parse_result *stack, int *op_counters)
 {
@@ -41,17 +39,19 @@ int	improved_simple_sort(t_parse_result *stack, int *op_counters)
 
 static int	calculate_minmax(t_parse_result *stack, int len, int *op_counters)
 {
-	int count;
-	int dist_min;
-	int dist_max;
+	int	count;
+	int	dist_min;
+	int	dist_max;
 
-	dist_min = check_pos_from_edge(&stack->stack_a, find_min(&stack->stack_a, len));
-	dist_max = check_pos_from_edge(&stack->stack_a, find_max(&stack->stack_a, len));
-	count  = 0;
+	dist_min = check_pos_from_edge(&stack->stack_a,
+			find_min(&stack->stack_a, len));
+	dist_max = check_pos_from_edge(&stack->stack_a,
+			find_max(&stack->stack_a, len));
+	count = 0;
 	if (dist_min - dist_max <= 2)
 	{
 		count += use_min(stack, len, op_counters);
-		count += pb(&stack->stack_a, &stack->stack_b,  op_counters);
+		count += pb(&stack->stack_a, &stack->stack_b, op_counters);
 	}
 	else
 	{
@@ -63,11 +63,12 @@ static int	calculate_minmax(t_parse_result *stack, int len, int *op_counters)
 
 static int	use_min(t_parse_result *stack, int len, int *op_counters)
 {
-	int pos;
-	int count;
+	int	pos;
+	int	count;
 
-	count  = 0;
-	pos = search_content(&stack->stack_a, find_min(&stack->stack_a, len));
+	count = 0;
+	pos = search_content(&stack->stack_a,
+			find_min(&stack->stack_a, len));
 	if (pos > (len / 2) + 1)
 	{
 		while (pos != len + 1)
@@ -76,7 +77,7 @@ static int	use_min(t_parse_result *stack, int len, int *op_counters)
 			pos++;
 		}
 	}
-		else
+	else
 	{
 		while (pos != 1)
 		{
@@ -87,13 +88,14 @@ static int	use_min(t_parse_result *stack, int len, int *op_counters)
 	return (count);
 }
 
-static int	use_max(t_parse_result *stack,  int len, int *op_counters)
+static int	use_max(t_parse_result *stack, int len, int *op_counters)
 {
-	int pos;
-	int count;
+	int	pos;
+	int	count;
 
-	count  = 0;
-	pos = search_content(&stack->stack_a, find_max(&stack->stack_a, len));
+	count = 0;
+	pos = search_content(&stack->stack_a,
+			find_max(&stack->stack_a, len));
 	if (pos > (len / 2) + 1)
 	{
 		while (pos != len + 1)
@@ -102,7 +104,7 @@ static int	use_max(t_parse_result *stack,  int len, int *op_counters)
 			pos++;
 		}
 	}
-		else
+	else
 	{
 		while (pos != 1)
 		{
@@ -112,4 +114,3 @@ static int	use_max(t_parse_result *stack,  int len, int *op_counters)
 	}
 	return (count);
 }
-

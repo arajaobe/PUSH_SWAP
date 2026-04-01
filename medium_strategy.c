@@ -3,26 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   medium_strategy.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arajaobe <arajaobe@student.42antananari    +#+  +:+       +#+        */
+/*   By: samrazaf <samrazaf@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/16 13:37:53 by arajaobe          #+#    #+#             */
-/*   Updated: 2026/03/23 16:48:15 by arajaobe         ###   ########.fr       */
+/*   Updated: 2026/04/01 17:53:14 by samrazaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "ft_push_swap.h"
 
-static int	medium_core(t_parse_result *stack, int *array, int *op_counters);
-static int	calculate_medium(t_parse_result *stack, int index, int len, int *op_counters);
-static int	rotate_medium(t_parse_result *stack, int *array, int size, int *op_counters);
-static int	temporary_medium(int *array, int size, int index, int *temp);
+static int	medium_core(t_parse_result *stack, int *array,
+				int *op_counters);
+static int	calculate_medium(t_parse_result *stack, int index,
+				int len, int *op_counters);
+static int	rotate_medium(t_parse_result *stack, int *array,
+				int size, int *op_counters);
+static int	temporary_medium(int *array, int size,
+				int index, int *temp);
 
 int	medium_sort(t_parse_result *stack, int *op_counters)
 {
 	int	len;
 	int	*array;
-	int count;
+	int	count;
 
 	count = 0;
 	len = count_nodes(stack->stack_a);
@@ -36,13 +39,15 @@ int	medium_sort(t_parse_result *stack, int *op_counters)
 	count += medium_core(stack, array, op_counters);
 	count += push_findmax(stack, op_counters);
 	free(array);
-	return count;
+	return (count);
 }
-static int	medium_core(t_parse_result *stack, int *array, int *op_counters)
+
+static int	medium_core(t_parse_result *stack, int *array,
+				int *op_counters)
 {
 	static int	i;
-	int 		count;
-	int 		len;
+	int			count;
+	int			len;
 	int			*temp;
 	int			chunk;
 
@@ -61,14 +66,16 @@ static int	medium_core(t_parse_result *stack, int *array, int *op_counters)
 	}
 	return (count);
 }
-static int	calculate_medium(t_parse_result *stack, int index, int len, int *op_counters)
+
+static int	calculate_medium(t_parse_result *stack, int index,
+				int len, int *op_counters)
 {
-	int count;
-	int pos;
+	int	count;
+	int	pos;
 
 	pos = index;
-	count  = 0;
-	if (index> (len / 2) + 1)
+	count = 0;
+	if (index > (len / 2) + 1)
 	{
 		while (pos != len + 1)
 		{
@@ -87,11 +94,12 @@ static int	calculate_medium(t_parse_result *stack, int index, int len, int *op_c
 	return (count);
 }
 
-static int	rotate_medium(t_parse_result *stack, int *array, int size, int *op_counters)
+static int	rotate_medium(t_parse_result *stack, int *array,
+				int size, int *op_counters)
 {
 	int	i;
 	int	len;
-	int count;
+	int	count;
 
 	len = count_nodes(stack->stack_a);
 	count = 0;
@@ -112,7 +120,7 @@ static int	rotate_medium(t_parse_result *stack, int *array, int size, int *op_co
 
 static int	temporary_medium(int *array, int size, int index, int *temp)
 {
-	int j;
+	int	j;
 
 	j = 0;
 	while (j < size)

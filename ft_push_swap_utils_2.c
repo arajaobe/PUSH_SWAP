@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_push_swap_utils_2.c                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: samrazaf <samrazaf@student.42antananari    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/04/01 17:01:12 by samrazaf          #+#    #+#             */
+/*   Updated: 2026/04/01 17:18:05 by samrazaf         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "ft_push_swap.h"
 
@@ -41,6 +52,7 @@ char	*ft_substr(const char *s, unsigned int start, size_t len)
 	ptr[i] = '\0';
 	return (ptr);
 }
+
 int	ft_strcmp(const char *s1, const char *s2)
 {
 	size_t	i;
@@ -63,12 +75,13 @@ int	ft_isdigit(int c)
 	}
 	return (0);
 }
+
 int	is_valid_digit(char *s)
 {
 	long	val;
 
 	val = ft_atol(s);
 	if (val < -2147483648 || val > 2147483647)
-		return 0;
+		return (0);
 	return (1);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arajaobe <arajaobe@student.42antananari    +#+  +:+       +#+        */
+/*   By: samrazaf <samrazaf@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 14:16:15 by arajaobe          #+#    #+#             */
-/*   Updated: 2026/02/19 13:41:51 by arajaobe         ###   ########.fr       */
+/*   Updated: 2026/04/01 18:03:14 by samrazaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 int		ft_putchar(int fd, char c);
 int		ft_putnbr(int fd, int n);
 int		ft_putnbr_double(int fd, double n);
-int		ft_putstr(int fd,char *s);
+int		ft_putstr(int fd, char *s);
 int		ft_printf(int fd, const char *format, ...);
 int		ft_printhexa(int fd, unsigned int n, char c);
 int		ft_printhexalong(int fd, unsigned long n, char c);

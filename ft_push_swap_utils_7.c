@@ -1,21 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_result.c                                     :+:      :+:    :+:   */
+/*   ft_push_swap_utils_7.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: samrazaf <samrazaf@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/30 17:33:38 by samrazaf          #+#    #+#             */
-/*   Updated: 2026/03/30 17:36:40 by samrazaf         ###   ########.fr       */
+/*   Updated: 2026/04/01 17:35:48 by samrazaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_push_swap.h"
 
-
 int	check_len_sort(t_parse_result *stack, int len)
 {
-	int count;
+	int	count;
 
 	count = 0;
 	if (is_sorted(stack->stack_a))
@@ -43,7 +42,7 @@ int	check_len_sort(t_parse_result *stack, int len)
 
 int	handle_len_sort(t_parse_result *stack, int *op_counters, int len)
 {
-	int count;
+	int	count;
 
 	count = 0;
 	if (is_sorted(stack->stack_a))
@@ -62,6 +61,7 @@ int	handle_len_sort(t_parse_result *stack, int *op_counters, int len)
 	}
 	return (count);
 }
+
 int	error_arg(int argc)
 {
 	if (argc <= 1)
@@ -72,11 +72,12 @@ int	error_arg(int argc)
 	return (0);
 }
 
-static int	push_findmax_calculate(t_parse_result *stack, int index, int len, int *op_counters)
+static int	push_findmax_calculate(t_parse_result *stack, int index,
+	int len, int *op_counters)
 {
-	int count;
+	int	count;
 
-	count  = 0;
+	count = 0;
 	if (index > (len / 2) + 1)
 	{
 		while (index != len + 1)
@@ -95,17 +96,18 @@ static int	push_findmax_calculate(t_parse_result *stack, int index, int len, int
 	}
 	return (count);
 }
+
 int	push_findmax(t_parse_result *stack, int *op_counters)
 {
-	int len;
+	int	len;
 	int	count;
-	int i;
+	int	i;
 
 	count = 0;
 	len = count_nodes(stack->stack_b);
 	while (stack->stack_b)
 	{
-		i = search_content(&stack->stack_b,  find_max(&stack->stack_b, len));
+		i = search_content(&stack->stack_b, find_max(&stack->stack_b, len));
 		count += push_findmax_calculate(stack, i, len, op_counters);
 		count += pa(&stack->stack_a, &stack->stack_b, op_counters);
 		len = count_nodes(stack->stack_b);

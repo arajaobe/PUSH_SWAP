@@ -1,18 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_operations.c                                    :+:      :+:    :+:   */
+/*   ft_operations_push.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arajaobe <arajaobe@student.42antananari    +#+  +:+       +#+        */
+/*   By: samrazaf <samrazaf@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/09 12:58:31 by arajaobe          #+#    #+#             */
-/*   Updated: 2026/03/16 17:04:53 by arajaobe         ###   ########.fr       */
+/*   Updated: 2026/04/01 17:10:01 by samrazaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "ft_push_swap.h"
-
 
 int	pb(t_stack **a, t_stack **b, int *op_counters)
 {

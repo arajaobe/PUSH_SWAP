@@ -1,9 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   bench_print.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: samrazaf <samrazaf@student.42antananari    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/04/01 16:59:58 by samrazaf          #+#    #+#             */
+/*   Updated: 2026/04/01 17:07:21 by samrazaf         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "ft_push_swap.h"
 
 static void	strategy_bench(t_strategy strat_bench, double disorder)
 {
-	char *strats;
+	char	*strats;
 
 	if (disorder < 0.2)
 		strats = "O(n²)";
@@ -20,6 +31,7 @@ static void	strategy_bench(t_strategy strat_bench, double disorder)
 	else
 		ft_printf(2, "[bench] strategy:   Adaptive / %s\n", strats);
 }
+
 static void	hundred(double disorder)
 {
 	double	before_point;
@@ -31,21 +43,20 @@ static void	hundred(double disorder)
 	before_point = decimal_point * 100 - (res * 100);
 	res = before_point;
 	if (res == 0)
-		{
-			ft_printf(2, "%f", decimal_point);
-			ft_printf(2, "0%%\n");
-		}
+	{
+		ft_printf(2, "%f", decimal_point);
+		ft_printf(2, "0%%\n");
+	}
 	else
 		ft_printf(2, "%f%%\n", decimal_point);
-
 }
 
-
-void 	print_bench( t_strategy strat, int *op_counters, double disorder_metrics, int total_ops)
+void	print_bench(t_strategy strat, int *op_counters,
+	double disorder_metrics, int total_ops)
 {
 	ft_printf(2, "[bench] disorder:   ");
 	hundred(disorder_metrics);
-	strategy_bench( strat, disorder_metrics);
+	strategy_bench(strat, disorder_metrics);
 	ft_printf(2, "[bench] total_ops:  %d\n", total_ops);
 	ft_printf(2, "[bench] sa: %d  sb: %d  ss: %d  pa: %d  pb: %d\n",
 		op_counters[OP_SA],
@@ -53,7 +64,7 @@ void 	print_bench( t_strategy strat, int *op_counters, double disorder_metrics, 
 		op_counters[OP_SS],
 		op_counters[OP_PA],
 		op_counters[OP_PB]);
-    ft_printf(2, "[bench] ra: %d  rb: %d  rr: %d  rra: %d  rrb: %d  rrr: %d\n",
+	ft_printf(2, "[bench] ra: %d  rb: %d  rr: %d  rra: %d  rrb: %d  rrr: %d\n",
 		op_counters[OP_RA],
 		op_counters[OP_RB],
 		op_counters[OP_RR],

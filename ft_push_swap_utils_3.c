@@ -1,31 +1,41 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_push_swap_utils_3.c                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: samrazaf <samrazaf@student.42antananari    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/04/01 17:01:18 by samrazaf          #+#    #+#             */
+/*   Updated: 2026/04/01 17:23:23 by samrazaf         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "ft_push_swap.h"
 
 t_stack	*find_link(t_stack *head, int pos)
 {
-	int i;
-
-	t_stack *p;
-	t_stack *res;
+	int		i;
+	t_stack	*p;
+	t_stack	*res;
 
 	p = head;
 	i = 1;
 	if (pos == 0)
-		return 0;
+		return (0);
 	while (i <= pos)
 	{
 		res = p;
 		p = p->next;
 		i++;
 	}
-	return res;
+	return (res);
 }
 
 void	fill_index(t_stack **head, int	*array)
 {
-	int i;
-	int	j;
-	int len;
+	int		i;
+	int		j;
+	int		len;
 	t_stack	*temp;
 
 	len = count_nodes(*head);
@@ -35,11 +45,11 @@ void	fill_index(t_stack **head, int	*array)
 		j = 0;
 		while (j < len)
 		{
-			if (array[i] == find_content(*head, j+1))
+			if (array[i] == find_content(*head, j + 1))
 			{
-				temp = find_link(*head, j+1 );
+				temp = find_link(*head, j + 1);
 				temp->index = i;
-				break;
+				break ;
 			}
 			j++;
 		}
@@ -94,7 +104,7 @@ double	disorder_metrics(t_stack *head)
 		while (j < len)
 		{
 			total_pair += 1;
-			if (find_content(head, i+1) > find_content(head, j+1))
+			if (find_content(head, i + 1) > find_content(head, j + 1))
 				mistakes += 1;
 			j++;
 		}
@@ -102,18 +112,19 @@ double	disorder_metrics(t_stack *head)
 	}
 	return ((double)mistakes / total_pair);
 }
-void	insertsort(int	*tab, int size)
+
+void	insertsort(int *tab, int size)
 {
-	int i;
-	int j;
-	int key;
+	int	i;
+	int	j;
+	int	key;
 
 	i = 1;
 	while (i < size)
 	{
 		key = tab[i];
 		j = i - 1;
-		while (j >=0 && tab[j] > key)
+		while (j >= 0 && tab[j] > key)
 		{
 			tab[j + 1] = tab[j];
 			j--;
