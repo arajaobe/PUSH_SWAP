@@ -177,6 +177,7 @@ The program prints `Error` to stderr and exits on:
 - Integers outside the range of `INT_MIN` / `INT_MAX`
 - Duplicate values
 - Sign-only arguments (`-`, `+`)
+- Double signs (`++`, `--`, `+-`)
 - Empty arguments (`""`, `" "`)
 
 Space-separated numbers inside a single quoted argument are valid:
@@ -199,11 +200,8 @@ Space-separated numbers inside a single quoted argument are valid:
 
 ### AI Usage
 
-Claude (Anthropic) was used during this project for the following:
 
 - **Conceptual understanding** — explaining how operations map to linked list manipulation, and how classic sorting algorithms translate into the two-stack model
-- **Algorithm design discussion** — discussing the rationale for disorder-based strategy selection and the choice of radix sort for high-disorder inputs
-- **Code review** — reviewing strategy implementations and identifying issues such as a `static` variable bug in the medium sort core function
 - **Debugging support** — helping trace edge cases in argument parsing (quoted arguments, lone signs, out-of-range integers)
 - **README drafting** — this README was written with AI assistance based on the actual project implementation
 

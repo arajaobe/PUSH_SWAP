@@ -25,7 +25,7 @@ int	check_pos_from_edge(t_stack **head, int check)
 	diff = 0;
 	len = count_nodes(*head);
 	pos = search_content(head, check);
-	if (pos <= (len / 2) + 1 ) // first half
+	if (pos <= (len / 2) + 1 )
 		diff = pos - 1;
 	else
 		diff =  (len + 1) - pos;
