@@ -179,11 +179,30 @@ The program prints `Error` to stderr and exits on:
 - Sign-only arguments (`-`, `+`)
 - Double signs (`++`, `--`, `+-`)
 - Empty arguments (`""`, `" "`)
+- Flags only
 
 Space-separated numbers inside a single quoted argument are valid:
 ```bash
 ./push_swap "3 1 2"   # same as: ./push_swap 3 1 2
 ```
+
+---
+
+## Contributions
+
+| | arajaobe | samrazaf |
+|---|---|---|
+| Simple sort (O(n²)) | ✅ | |
+| Medium sort (O(n√n)) | ✅ | |
+| All operations (sa, sb, ss, pa, pb, ra, rb, rr, rra, rrb, rrr) | ✅ | |
+| Benchmark print (`--bench`) | ✅ | |
+| Makefile | ✅ | |
+| Complex sort (O(n log n) radix) | | ✅ |
+| Adaptive strategy selector | | ✅ |
+| Error management | | ✅ |
+| Flags (`--simple`, `--medium`, `--complex`) | | ✅ |
+| Argument parsing | ✅ | ✅ |
+|Readme | ✅ | ✅ |
 
 ---
 
@@ -199,7 +218,6 @@ Space-separated numbers inside a single quoted argument are valid:
 - **push_swap overview (community)** — https://medium.com/@ayogun/push-swap-c1f5d2d41e97
 
 ### AI Usage
-
 
 - **Conceptual understanding** — explaining how operations map to linked list manipulation, and how classic sorting algorithms translate into the two-stack model
 - **Debugging support** — helping trace edge cases in argument parsing (quoted arguments, lone signs, out-of-range integers)

@@ -30,6 +30,7 @@ int	main(int argc, char **argv)
 	x = run_strategy(parse.strategy, &parse, op_counters);
 	if (parse.bench_mode)
 		print_bench(parse.strategy, op_counters, disorder, x);
+	ft_lstclear(&parse.stack_a);
 	return (0);
 }
 
