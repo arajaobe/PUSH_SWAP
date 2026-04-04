@@ -32,7 +32,7 @@ int	check_len_sort(t_parse_result *stack, int len)
 		count = 1;
 		return (count);
 	}
-	if (len <= 15)
+	if (len <= 5)
 	{
 		count = 1;
 		return (count);
@@ -55,7 +55,7 @@ int	handle_len_sort(t_parse_result *stack, int *op_counters, int len)
 	{
 		count = mini_sort(stack, op_counters);
 	}
-	else if (len <= 15)
+	else if (len <= 5)
 	{
 		count = short_sort(stack, op_counters);
 	}

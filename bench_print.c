@@ -16,7 +16,9 @@ static void	strategy_bench(t_strategy strat_bench, double disorder)
 {
 	char	*strats;
 
-	if (disorder < 0.2)
+	if (disorder == 0)
+		strats = "O(1)";
+	else if (disorder < 0.2)
 		strats = "O(n²)";
 	else if (disorder < 0.5)
 		strats = "O(n√n)";

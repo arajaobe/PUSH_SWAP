@@ -109,7 +109,7 @@ This metric drives the adaptive strategy: instead of always using the heaviest a
 ### Simple Sort — O(n²)
 
 **How it works:**
-Repeatedly finds the element closest to the top or bottom of stack a (either the minimum or maximum, whichever requires fewer rotations) and pushes it to stack b. Once only 3 elements remain in stack a, they are sorted with a hardcoded function. Everything is then pushed back from b to a.
+Repeatedly finds the element closest to the top or bottom of stack a (either the minimum or maximum, whichever requires fewer rotations) and pushes it to stack b. Everything is then pushed back from b to a.
 
 **Justification:**
 For nearly sorted inputs (disorder < 0.2), the number of rotations needed per element is very small. The theoretical O(n²) bound is loose — in practice the operation count is close to O(n). This makes it the most efficient choice for low-disorder inputs.
