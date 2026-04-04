@@ -6,13 +6,13 @@
 /*   By: samrazaf <samrazaf@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 17:01:12 by samrazaf          #+#    #+#             */
-/*   Updated: 2026/04/01 17:18:05 by samrazaf         ###   ########.fr       */
+/*   Updated: 2026/04/04 15:58:06 by samrazaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_push_swap.h"
 
-static size_t	ft_strlen(const char *s)
+size_t	ft_strlen(const char *s)
 {
 	size_t	i;
 

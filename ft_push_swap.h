@@ -6,7 +6,7 @@
 /*   By: samrazaf <samrazaf@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/09 12:58:04 by arajaobe          #+#    #+#             */
-/*   Updated: 2026/04/01 17:46:54 by samrazaf         ###   ########.fr       */
+/*   Updated: 2026/04/04 15:58:22 by samrazaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ typedef struct s_parse_result
 t_parse_result	list_arg_fillers_new(int argc, char **argv);
 t_stack			*ft_lstnew(int content);
 t_stack			*find_link(t_stack *head, int pos);
+size_t			ft_strlen(const char *s);
 int				pb(t_stack **a, t_stack **b, int *op_counters);
 int				pa(t_stack **a, t_stack **b, int *op_counters);
 int				sa(t_stack **a, int *op_counters);

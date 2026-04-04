@@ -6,7 +6,7 @@
 /*   By: samrazaf <samrazaf@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 17:01:32 by samrazaf          #+#    #+#             */
-/*   Updated: 2026/04/01 17:34:09 by samrazaf         ###   ########.fr       */
+/*   Updated: 2026/04/04 15:58:57 by samrazaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ int	ft_isnumber(char *s)
 	if (s[i] == '-' || s[i] == '+')
 		i++;
 	if (s[i] == '-' || s[i] == '+')
+		return (0);
+	if (ft_strlen(s) > 11)
 		return (0);
 	if (!ft_isdigit((unsigned char)s[i]))
 		return (0);
