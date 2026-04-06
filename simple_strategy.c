@@ -16,17 +16,23 @@ static int	calculate_minmax(t_parse_result *stack, int len, int *op_counters);
 static int	use_min(t_parse_result *stack, int len, int *op_counters);
 static int	use_max(t_parse_result *stack, int len, int *op_counters);
 
-int	improved_simple_sort(t_parse_result *stack, int *op_counters)
+int	improved_simple_sort(t_parse_result *stack, t_strategy startegy,
+		int *op_counters)
 {
 	int	len;
 	int	count;
 
 	count = 0;
 	len = count_nodes(stack->stack_a);
-	if (check_len_sort(stack, len) == 1)
-	{
-		count = handle_len_sort(stack, op_counters, len);
+	if (is_sorted(stack->stack_a))
 		return (count);
+	if (startegy == STRAT_ADAPTIVE)
+	{
+		if (check_len_sort(len) == 1)
+		{
+			count = handle_len_sort(stack, op_counters, len);
+			return (count);
+		}
 	}
 	while (stack->stack_a)
 	{

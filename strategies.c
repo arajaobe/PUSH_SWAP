@@ -12,22 +12,23 @@
 
 #include "ft_push_swap.h"
 
-int	adaptive_sort(t_parse_result *stack, int *op_operation, double disorder)
+int	adaptive_sort(t_parse_result *stack, t_strategy strategy,
+		int *op_operation, double disorder)
 {
 	int		count;
 
 	count = 0;
 	if (disorder < 0.2)
 	{
-		count = improved_simple_sort(stack, op_operation);
+		count = improved_simple_sort(stack, strategy, op_operation);
 	}
 	else if (disorder >= 0.2 && disorder < 0.5)
 	{
-		count = medium_sort(stack, op_operation);
+		count = medium_sort(stack, strategy, op_operation);
 	}
 	else
 	{
-		count = complex_sort(stack, op_operation);
+		count = complex_sort(stack, strategy, op_operation);
 	}
 	return (count);
 }
@@ -40,13 +41,13 @@ int	run_strategy(t_strategy strat, t_parse_result *stack, int *op_counters)
 	count = 0;
 	disorder = disorder_metrics(stack->stack_a);
 	if (strat == STRAT_SIMPLE)
-		count = improved_simple_sort(stack, op_counters);
+		count = improved_simple_sort(stack, strat, op_counters);
 	else if (strat == STRAT_MEDIUM)
-		count = medium_sort(stack, op_counters);
+		count = medium_sort(stack, strat, op_counters);
 	else if (strat == STRAT_COMPLEX)
-		count = complex_sort(stack, op_counters);
+		count = complex_sort(stack, strat, op_counters);
 	else
-		count = adaptive_sort(stack, op_counters, disorder);
+		count = adaptive_sort(stack, strat, op_counters, disorder);
 	return (count);
 }
 
@@ -62,7 +63,8 @@ t_parse_result	list_arg_fillers_new(int argc, char **argv)
 	result.stack_a = NULL;
 	result.bench_mode = 0;
 	result.strategy = STRAT_ADAPTIVE;
-	error_arg(argc);
+	if (argc <= 1)
+		return (result);
 	i = 1;
 	while (i < argc)
 	{

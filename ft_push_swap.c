@@ -36,11 +36,6 @@ int	main(int argc, char **argv)
 
 static void	error_check(t_parse_result *stack)
 {
-	if (stack->stack_a == NULL)
-	{
-		ft_printf(2, "Error\n");
-		exit(1);
-	}
 	if (duplicate(&stack->stack_a))
 	{
 		ft_lstclear(&stack->stack_a);

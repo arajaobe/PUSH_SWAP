@@ -95,7 +95,7 @@ double	disorder_metrics(t_stack *head)
 	mistakes = 0;
 	total_pair = 0;
 	len = count_nodes(head);
-	if (len == 1)
+	if (len <= 1)
 		return (0);
 	i = 0;
 	while (i < len)

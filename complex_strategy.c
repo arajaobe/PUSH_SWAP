@@ -40,7 +40,7 @@ static int	complexe_core(t_parse_result *stack, int bits, int *op_counters)
 	return (count);
 }
 
-int	complex_sort(t_parse_result *stack, int *op_counters)
+int	complex_sort(t_parse_result *stack, t_strategy strategy, int *op_counters)
 {
 	int	len;
 	int	*array;
@@ -49,10 +49,15 @@ int	complex_sort(t_parse_result *stack, int *op_counters)
 
 	count = 0;
 	len = count_nodes(stack->stack_a);
-	if (check_len_sort(stack, len) == 1)
-	{
-		count = handle_len_sort(stack, op_counters, len);
+	if (is_sorted(stack->stack_a))
 		return (count);
+	if (strategy == STRAT_ADAPTIVE)
+	{
+		if (check_len_sort(len) == 1)
+		{
+			count = handle_len_sort(stack, op_counters, len);
+			return (count);
+		}
 	}
 	array = malloc(sizeof(int) * len);
 	array_sort(&stack->stack_a, array);

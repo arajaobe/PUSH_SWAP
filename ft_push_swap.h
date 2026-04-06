@@ -87,11 +87,14 @@ int				find_max(t_stack **head, int len);
 int				find_min(t_stack **head, int len);
 int				check_pos_from_edge(t_stack **head, int check);
 int				push_findmax(t_parse_result *stack, int *op_counters);
-int				medium_sort(t_parse_result *stack, int *op_counters);
-int				improved_simple_sort(t_parse_result *stack, int *op_counters);
+int				medium_sort(t_parse_result *stack, t_strategy strategy,
+					int *op_counters);
+int				improved_simple_sort(t_parse_result *stack, t_strategy strategy,
+					int *op_counters);
 void			print_bench( t_strategy strat, int *op_counters,
 					double disorder_metrics, int total_ops);
-int				complex_sort(t_parse_result *stack, int *op_counters);
+int				complex_sort(t_parse_result *stack, t_strategy strategy,
+					int *op_counters);
 int				find_index(t_stack *head, int pos);
 int				bit_count(int max_index);
 int				find_max_bits(t_stack **head, int len);
@@ -106,16 +109,15 @@ int				run_strategy(t_strategy strat, t_parse_result *stack,
 int				ft_isnumber(char *s);
 void			ft_free_split(char **split);
 int				is_valid_digit(char *s);
-int				adaptive_sort(t_parse_result *stack, int *op_operation,
-					double disorder);
+int				adaptive_sort(t_parse_result *stack, t_strategy strategy,
+					int *op_operation, double disorder);
 int				tiny_sort(t_parse_result *stack, int *op_counters);
 int				is_sorted(t_stack *stack);
 int				mini_sort(t_parse_result *a, int *op_counters);
 int				short_sort(t_parse_result *ptr, int *op_counters);
-int				check_len_sort(t_parse_result *stack, int len);
+int				check_len_sort(int len);
 int				handle_len_sort(t_parse_result *stack,
 					int *op_counters, int len);
-int				error_arg(int argc);
 void			handle_arg(char *arg, t_stack **head, t_stack **current);
 int				is_flag(char *arg);
 void			handle_flag(char *arg, t_parse_result *result);

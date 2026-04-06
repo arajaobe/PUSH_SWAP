@@ -12,16 +12,11 @@
 
 #include "ft_push_swap.h"
 
-int	check_len_sort(t_parse_result *stack, int len)
+int	check_len_sort(int len)
 {
 	int	count;
 
 	count = 0;
-	if (is_sorted(stack->stack_a))
-	{
-		count = 1;
-		return (count);
-	}
 	if (len == 2)
 	{
 		count = 1;
@@ -45,9 +40,7 @@ int	handle_len_sort(t_parse_result *stack, int *op_counters, int len)
 	int	count;
 
 	count = 0;
-	if (is_sorted(stack->stack_a))
-		count = 0;
-	else if (len == 2)
+	if (len == 2)
 	{
 		count = tiny_sort(stack, op_counters);
 	}
@@ -60,16 +53,6 @@ int	handle_len_sort(t_parse_result *stack, int *op_counters, int len)
 		count = short_sort(stack, op_counters);
 	}
 	return (count);
-}
-
-int	error_arg(int argc)
-{
-	if (argc <= 1)
-	{
-		ft_printf(2, "Error\n");
-		exit(1);
-	}
-	return (0);
 }
 
 static int	push_findmax_calculate(t_parse_result *stack, int index,
