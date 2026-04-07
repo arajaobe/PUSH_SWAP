@@ -1,0 +1,1 @@
+cc *.c ft_printf/libftprintf.a get_next_line/libftget.a
