@@ -6,7 +6,7 @@
 /*   By: samrazaf <samrazaf@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/09 12:58:04 by arajaobe          #+#    #+#             */
-/*   Updated: 2026/04/08 19:11:07 by samrazaf         ###   ########.fr       */
+/*   Updated: 2026/04/08 19:43:01 by samrazaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ int				is_valid_digit(char *s);
 int				ft_isnumber(char *s);
 void			ft_lstclear(t_stack **lst);
 void			ft_free_split(char **split);
-void			append_node(t_stack **head, t_stack **current, t_stack *new_node);
+void			append_node(t_stack **head, t_stack **current,
+					t_stack *new_node);
 void			parse_tab(char **tab, t_stack **head, t_stack **current);
 void			handle_arg(char *arg, t_stack **head, t_stack **current);
 int				ft_strcmp(const char *s1, const char *s2);

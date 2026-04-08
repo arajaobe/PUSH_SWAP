@@ -6,7 +6,7 @@
 /*   By: samrazaf <samrazaf@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/07 18:03:33 by samrazaf          #+#    #+#             */
-/*   Updated: 2026/04/08 19:02:16 by samrazaf         ###   ########.fr       */
+/*   Updated: 2026/04/08 19:40:44 by samrazaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 int	main(int argc, char **argv)
 {
 	t_parse_result	parse;
-	char	*line;
-	double		x;
+	char			*line;
+	double			x;
 
 	parse = list_arg_fillers_new(argc, argv);
 	parse.stack_b = NULL;
