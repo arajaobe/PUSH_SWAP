@@ -1,0 +1,39 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_operations_push.c                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: samrazaf <samrazaf@student.42antananari    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/03/09 12:58:31 by arajaobe          #+#    #+#             */
+/*   Updated: 2026/04/08 19:12:20 by samrazaf         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "ft_push_swap_bonus.h"
+
+int	pb(t_stack **a, t_stack **b)
+{
+	t_stack	*temp;
+
+	if (!a)
+		return (0);
+	temp = *a;
+	*a = (*a)->next;
+	temp->next = *b;
+	*b = temp;
+	return (1);
+}
+
+int	pa(t_stack **a, t_stack **b)
+{
+	t_stack	*temp;
+
+	if (!b)
+		return (0);
+	temp = *b;
+	*b = (*b)->next;
+	temp->next = *a;
+	*a = temp;
+	return (1);
+}
