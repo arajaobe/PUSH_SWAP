@@ -6,7 +6,7 @@
 /*   By: samrazaf <samrazaf@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 17:53:26 by samrazaf          #+#    #+#             */
-/*   Updated: 2026/04/01 17:53:28 by samrazaf         ###   ########.fr       */
+/*   Updated: 2026/04/08 17:16:26 by samrazaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,8 @@ void	handle_arg(char *arg, t_stack **head, t_stack **current)
 	if (!tab || !tab[0])
 	{
 		ft_printf(2, "Error\n");
+		ft_free_split(tab);
+		ft_lstclear(head);
 		exit(1);
 	}
 	parse_tab(tab, head, current);

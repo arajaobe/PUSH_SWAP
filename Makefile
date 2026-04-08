@@ -5,7 +5,9 @@ SRCS =	bench_print.c complex_strategy.c ft_operations_push.c ft_operations_rever
 
 CFLAGS		= -Werror -Wextra -Wall
 
-OBJS		= $(SRCS:.c=.o)
+OBJ_DIR = obj
+
+OBJS		= $(SRCS:%.c=$(OBJ_DIR)/%.o)
 
 CC		= cc
 
@@ -16,6 +18,7 @@ NAME		= push_swap
 PRINTF_DIR	= ft_printf
 PRINTF_LIB	= $(PRINTF_DIR)/libftprintf.a
 
+
 all: $(NAME)
 
 $(PRINTF_LIB):
@@ -24,11 +27,12 @@ $(PRINTF_LIB):
 $(NAME): $(PRINTF_LIB) $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) -L$(PRINTF_DIR) -lftprintf -o $(NAME)
 
-%.o: %.c
+$(OBJ_DIR)/%.o: %.c
+	@mkdir -p $(OBJ_DIR)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	$(RM) $(OBJS)
+	$(RM) -r $(OBJ_DIR)
 	make -C $(PRINTF_DIR) clean
 
 fclean: clean
