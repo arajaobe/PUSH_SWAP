@@ -15,11 +15,19 @@ RM		= rm -f
 
 NAME		= push_swap
 
+NAME_BONUS	= checker
+
 PRINTF_DIR	= ft_printf
 PRINTF_LIB	= $(PRINTF_DIR)/libftprintf.a
+BONUS_DIR	= bonus
 
 
 all: $(NAME)
+
+bonus:
+	$(MAKE) -C $(BONUS_DIR)
+	cp $(BONUS_DIR)/$(NAME_BONUS)	.
+
 
 $(PRINTF_LIB):
 	make -C $(PRINTF_DIR)
@@ -37,8 +45,10 @@ clean:
 
 fclean: clean
 	$(RM) $(NAME)
+	$(RM) $(NAME_BONUS)
 	make -C $(PRINTF_DIR) fclean
+	$(MAKE) -C $(BONUS_DIR) fclean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re bonus

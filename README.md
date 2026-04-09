@@ -188,6 +188,42 @@ Space-separated numbers inside a single quoted argument are valid:
 
 ---
 
+
+## Bonus
+
+The bonus implements a **checker** program that verifies whether a sequence of operations correctly sorts a stack.
+
+### How it works
+
+```bash
+./push_swap 3 1 2 | ./checker 3 1 2
+OK   # or KO
+```
+
+The checker:
+1. Takes the same arguments as `push_swap` (the numbers to sort)
+2. Reads operations from stdin line by line (using `get_next_line`)
+3. Applies each operation to the stacks
+4. Prints `OK` if stack a is sorted and stack b is empty, `KO` otherwise
+5. Prints `Error` to stderr for invalid arguments or unrecognized operations
+
+### Compile the bonus
+
+```bash
+make bonus    # builds the checker binary
+```
+
+### Error cases
+
+The checker prints `Error` to stderr on:
+- Non-integer arguments
+- Integers outside `INT_MIN` / `INT_MAX`
+- Duplicate values
+- Unrecognized or malformed operations
+
+---
+
+
 ## Contributions
 
 | | arajaobe | samrazaf |
@@ -197,12 +233,14 @@ Space-separated numbers inside a single quoted argument are valid:
 | All operations (sa, sb, ss, pa, pb, ra, rb, rr, rra, rrb, rrr) | ✅ | |
 | Benchmark print (`--bench`) | ✅ | |
 | Makefile | ✅ | |
+| ft_printf | ✅ | |
 | Complex sort (O(n log n) radix) | | ✅ |
 | Adaptive strategy selector | | ✅ |
 | Error management | | ✅ |
 | Flags (`--simple`, `--medium`, `--complex`) | | ✅ |
+| Bonus | | ✅ |
 | Argument parsing | ✅ | ✅ |
-|Readme | ✅ | ✅ |
+| Readme | ✅ | ✅ |
 
 ---
 
