@@ -6,7 +6,7 @@
 /*   By: samrazaf <samrazaf@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/09 12:58:04 by arajaobe          #+#    #+#             */
-/*   Updated: 2026/04/08 19:43:01 by samrazaf         ###   ########.fr       */
+/*   Updated: 2026/04/09 14:59:14 by samrazaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ int				is_flag(char *arg);
 void			error_check(t_parse_result *stack);
 int				duplicate(t_stack **a);
 t_parse_result	list_arg_fillers_new(int argc, char **argv);
+int				check_error(char *str);
 void			execute_function(t_parse_result *stack, char *str);
 double			disorder_metrics(t_stack *head);
 char			**ft_split(char const *s, char c);

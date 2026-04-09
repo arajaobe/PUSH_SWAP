@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_push_swap.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arajaobe <arajaobe@student.42antananari    +#+  +:+       +#+        */
+/*   By: samrazaf <samrazaf@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/16 13:37:45 by arajaobe          #+#    #+#             */
-/*   Updated: 2026/04/09 14:49:33 by arajaobe         ###   ########.fr       */
+/*   Updated: 2026/04/09 15:09:48 by samrazaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ int	main(int argc, char **argv)
 	if (parse.bench_mode)
 		print_bench(parse.strategy, op_counters, disorder, x);
 	ft_lstclear(&parse.stack_a);
-	ft_printf(1, "sd");
 	return (0);
 }
 

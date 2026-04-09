@@ -6,7 +6,7 @@
 /*   By: samrazaf <samrazaf@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/07 18:03:33 by samrazaf          #+#    #+#             */
-/*   Updated: 2026/04/08 19:40:44 by samrazaf         ###   ########.fr       */
+/*   Updated: 2026/04/09 14:59:55 by samrazaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ int	main(int argc, char **argv)
 		return (0);
 	while (line)
 	{
+		if (!check_error(line))
+			return (0);
 		execute_function(&parse, line);
 		free(line);
 		line = get_next_line(0);
